@@ -1,0 +1,75 @@
+package com.example.MyBookShopApp.data;
+
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
+
+/*
+CREATE TABLE books (
+id INT AUTO_INCREMENT PRIMARY KEY,
+author VARCHAR(250) NOT NULL,
+title VARCHAR(250) NOT NULL,
+priceOld  VARCHAR(250) DEFAULT NULL,
+price VARCHAR(250) DEFAULT NULL
+);
+ */
+
+public class Book {
+    private Integer id;
+    private String author;
+    private String title;
+    private String priceOld;
+    private String price;
+
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public String getAuthor() {
+        return author;
+    }
+
+    public void setAuthor(String author) {
+        this.author = author;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public String getPriceOld() {
+        return priceOld;
+    }
+
+    public void setPriceOld(String priceOld) {
+        this.priceOld = priceOld;
+    }
+
+    public String getPrice() {
+        return price;
+    }
+
+    public void setPrice(String price) {
+        this.price = price;
+    }
+
+    @Override
+    public String toString() {
+        return "Book{" +
+                "id=" + id +
+                ", author='" + author + '\'' +
+                ", title='" + title + '\'' +
+                ", priceOld='" + priceOld + '\'' +
+                ", price='" + price + '\'' +
+                '}';
+    }
+}
