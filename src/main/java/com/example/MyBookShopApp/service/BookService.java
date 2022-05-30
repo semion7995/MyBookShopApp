@@ -21,14 +21,6 @@ public class BookService {
 
     public List<Book> getBooksData() {
 
-        /*
-        private Integer idBook;
-
-    private Integer authorId;
-    private String title;
-    private String priceOld;
-    private String price;
-         */
         List<Book> books = jdbcTemplate.query("select * from books left join authors on authors.id_author = books.authorId;", (ResultSet rs, int rowNum) -> {
             Book book = new Book();
             book.setIdBook(rs.getInt("id_book"));
@@ -40,5 +32,9 @@ public class BookService {
             return book;
         });
         return new ArrayList<>(books);
+    }
+
+    public int addBook(int id){
+     return 0;
     }
 }

@@ -1,3 +1,5 @@
+
+DROP TABLE IF EXISTS genres;
 DROP TABLE IF EXISTS authors;
 DROP TABLE IF EXISTS books;
 CREATE TABLE authors
@@ -15,6 +17,11 @@ CREATE TABLE books (
                        priceOld  VARCHAR(250) DEFAULT NULL,
                        price VARCHAR(250) DEFAULT NULL
 );
+
+-- CREATE TABLE genres(
+--     id_genres INT AUTO_INCREMENT PRIMARY KEY ,
+--
+-- )
 
 
 -- select * from authors left join books on books.id_book = authors.bookId;
