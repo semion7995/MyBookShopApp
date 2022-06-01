@@ -25,7 +25,7 @@ public class BookService {
             Book book = new Book();
             book.setIdBook(rs.getInt("id_book"));
             book.setAuthorId(rs.getInt("authorId"));
-            book.setAuthor(rs.getString("name"));
+            book.setAuthor(rs.getString("first_name") + " " + rs.getString("last_name"));
             book.setTitle(rs.getString("title"));
             book.setPriceOld(rs.getString("priceOld"));
             book.setPrice(rs.getString("price"));

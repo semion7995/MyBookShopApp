@@ -2,16 +2,16 @@ package com.example.MyBookShopApp.service;
 
 
 import com.example.MyBookShopApp.data.Author;
-import com.example.MyBookShopApp.data.Book;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
 
 import java.sql.ResultSet;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
-import java.util.Set;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 //@Slf4j
 @Service
@@ -25,14 +25,17 @@ public class AuthorsService {
     }
 
 
-    public List<Author> getAuthorsData() {
+    public Map<String, List<Author>> getAuthorsMap() {
 
         List<Author> authors = jdbcTemplate.query("select * from authors;", (ResultSet rs, int rowNum)->{
             Author author = new Author();
             author.setIdAuthor(rs.getInt("id_author"));
-            author.setName(rs.getString("name"));
+            author.setFirstName(rs.getString("first_name"));
+            author.setLastName(rs.getString("last_name"));
             return author;
         });
-        return new ArrayList<>(authors);
+
+
+        return authors.stream().collect(Collectors.groupingBy((Author a)-> { return a.getLastName().toUpperCase().substring(0,1);}));
     }
 }

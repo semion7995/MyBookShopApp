@@ -12,7 +12,9 @@ import java.util.List;
 public class Author {
 
     private Integer idAuthor;
-    private String name;
+    private String firstName;
+    private String lastName;
+
 
     private List<Book> booksList;
 }

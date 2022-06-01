@@ -52,53 +52,53 @@ insert into books (authorId, title, priceOld, price) values (24, 'content 24', '
 insert into books (authorId, title, priceOld, price) values (25, 'content 25', '$2732.30', '$2531.72');
 
 
-insert into authors (name)
-values ('Drucie Goodbourn');
-insert into authors (name)
-values ('Marcia Aggiss');
-insert into authors (name)
-values ('Giovanni Bigg');
-insert into authors (name)
-values ('Duffie Eynon');
-insert into authors (name)
-values ('Anselma McKennan');
-insert into authors (name)
-values ('Gert Kira');
-insert into authors (name)
-values ('Clerc Djakovic');
-insert into authors (name)
-values ('Stacee Elsy');
-insert into authors (name)
-values ('Dorotea Bonhill');
-insert into authors (name)
-values ('Minni Bunney');
-insert into authors (name)
-values ('Berty Gandley');
-insert into authors (name)
-values ('Raynard Tesdale');
-insert into authors (name)
-values ('Joanna Hutfield');
-insert into authors (name)
-values ('Dannie Glidder');
-insert into authors (name)
-values ('Timmie Adshede');
-insert into authors (name)
-values ('Fernando Neads');
-insert into authors (name)
-values ('Teddy Guilliland');
-insert into authors (name)
-values ('Paloma Grebert');
-insert into authors (name)
-values ('Kristos Usher');
-insert into authors (name)
-values ('Darcey Rohmer');
-insert into authors (name)
-values ('Cristie Isacsson');
-insert into authors (name)
-values ('Lindsay Coutthart');
-insert into authors (name)
-values ('Helyn Schneidar');
-insert into authors (name)
-values ('Bette-ann Askem');
-insert into authors (name)
-values ('Dom Robuchon');
+-- insert into authors (name)
+-- values ('Drucie Goodbourn');
+-- insert into authors (name)
+-- values ('Marcia Aggiss');
+-- insert into authors (name)
+-- values ('Giovanni Bigg');
+-- insert into authors (name)
+-- values ('Duffie Eynon');
+-- insert into authors (name)
+-- values ('Anselma McKennan');
+-- insert into authors (name)
+-- values ('Gert Kira');
+-- insert into authors (name)
+-- values ('Clerc Djakovic');
+-- insert into authors (name)
+-- values ('Stacee Elsy');
+-- insert into authors (name)
+-- values ('Dorotea Bonhill');
+-- insert into authors (name)
+-- values ('Minni Bunney');
+-- insert into authors (name)
+-- values ('Berty Gandley');
+-- insert into authors (name)
+-- values ('Raynard Tesdale');
+-- insert into authors (name)
+-- values ('Joanna Hutfield');
+-- insert into authors (name)
+-- values ('Dannie Glidder');
+-- insert into authors (name)
+-- values ('Timmie Adshede');
+-- insert into authors (name)
+-- values ('Fernando Neads');
+-- insert into authors (name)
+-- values ('Teddy Guilliland');
+-- insert into authors (name)
+-- values ('Paloma Grebert');
+-- insert into authors (name)
+-- values ('Kristos Usher');
+-- insert into authors (name)
+-- values ('Darcey Rohmer');
+-- insert into authors (name)
+-- values ('Cristie Isacsson');
+-- insert into authors (name)
+-- values ('Lindsay Coutthart');
+-- insert into authors (name)
+-- values ('Helyn Schneidar');
+-- insert into authors (name)
+-- values ('Bette-ann Askem');
+-- insert into authors (name)
+-- values ('Dom Robuchon');
