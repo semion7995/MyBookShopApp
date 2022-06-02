@@ -1,4 +1,4 @@
-package com.example.MyBookShopApp.service;
+package com.example.MyBookShopApp.service.books;
 
 import com.example.MyBookShopApp.data.Book;
 import org.springframework.beans.factory.annotation.Autowired;

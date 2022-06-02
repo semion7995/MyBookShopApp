@@ -1,4 +1,4 @@
-package com.example.MyBookShopApp.controllers;
+package com.example.MyBookShopApp.controllers.books;
 
 import com.example.MyBookShopApp.data.Book;
 import com.example.MyBookShopApp.service.books.BookService;
@@ -10,12 +10,12 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import java.util.List;
 
 @Controller
-public class MainPageController {
+public class BooksPopularController {
 
     private final BookService bookService;
 
     @Autowired
-    public MainPageController(BookService bookService) {
+    public BooksPopularController(BookService bookService) {
         this.bookService = bookService;
     }
 
@@ -24,8 +24,8 @@ public class MainPageController {
         return bookService.getBooksData();
     }
 
-    @GetMapping("/")
-    public String mainPage(){
-        return "index";
+    @GetMapping("/books/popular")
+    public String booksPopularPage(){
+        return "/books/popular";
     }
 }
