@@ -1,6 +1,6 @@
 package com.example.MyBookShopApp.controllers.documents;
 
-import com.example.MyBookShopApp.data.Document;
+import com.example.MyBookShopApp.data.documents.Document;
 import com.example.MyBookShopApp.service.documents.DocumentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -21,9 +21,9 @@ public class DocumentsController {
         this.documentService = documentService;
     }
 
-    @ModelAttribute("documentList")
-    public List<Document> documentList (){
-        return documentService.getDocumentList();
+    @ModelAttribute("getDocumentsList")
+    public List<Document> getDocumentsList(){
+        return documentService.getDocumentsList();
     }
 
     @GetMapping

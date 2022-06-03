@@ -1,6 +1,9 @@
 package com.example.MyBookShopApp.service.books;
 
 import com.example.MyBookShopApp.data.Book;
+import com.example.MyBookShopApp.data.books.Popular;
+import com.example.MyBookShopApp.data.books.Recent;
+import com.example.MyBookShopApp.data.books.Slug;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
@@ -19,7 +22,11 @@ public class BookService {
         this.jdbcTemplate = jdbcTemplate;
     }
 
-    public List<Book> getBooksData() {
+
+    /*
+    this fun used MainPageController.java
+     */
+    public List<Book> getBooksList() {
 
         List<Book> books = jdbcTemplate.query("select * from books left join authors on authors.id_author = books.authorId;", (ResultSet rs, int rowNum) -> {
             Book book = new Book();
@@ -36,5 +43,16 @@ public class BookService {
 
     public int addBook(int id){
      return 0;
+    }
+
+    public List<Popular> getBooksPopularsList() {
+        return new ArrayList<>();
+    }
+    public List<Recent> getBooksRecentList() {
+        return new ArrayList<>();
+    }
+
+    public List<Slug> getBooksSlugList() {
+        return new ArrayList<>();
     }
 }

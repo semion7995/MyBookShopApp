@@ -1,8 +1,8 @@
 package com.example.MyBookShopApp.controllers.books;
 
 import com.example.MyBookShopApp.data.Book;
+import com.example.MyBookShopApp.data.books.Slug;
 import com.example.MyBookShopApp.service.books.BookService;
-import lombok.experimental.Accessors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -21,9 +21,9 @@ public class BooksSlugController {
         this.bookService = bookService;
     }
 
-    @ModelAttribute("recommendedBooks")
-    public List<Book> recomendedBooks(){
-        return bookService.getBooksData();
+    @ModelAttribute("getBooksSlugList")
+    public List<Slug> getBooksSlugList(){
+        return bookService.getBooksSlugList();
     }
 
     @GetMapping

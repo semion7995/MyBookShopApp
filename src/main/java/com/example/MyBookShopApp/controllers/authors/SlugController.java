@@ -1,30 +1,27 @@
 package com.example.MyBookShopApp.controllers.authors;
 
-import com.example.MyBookShopApp.data.Author;
-import com.example.MyBookShopApp.service.authors.AuthorsService;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.example.MyBookShopApp.data.authors.Slug;
+import com.example.MyBookShopApp.service.authors.SlugService;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.List;
-import java.util.Map;
 
 @Controller
 @RequestMapping("/authors/slug")
 public class SlugController {
 
-    private final AuthorsService authorsService;
+    private final SlugService slugService;
 
-    @Autowired
-    public SlugController(AuthorsService authorsService) {
-        this.authorsService = authorsService;
+    public SlugController(SlugService slugService) {
+        this.slugService = slugService;
     }
 
-    @ModelAttribute("authorsMap")
-    public Map<String, List<Author>> authorsMap() {
-        return authorsService.getAuthorsMap();
+    @ModelAttribute("getSlugList")
+    public List<Slug> getSlugList(){
+        return slugService.getSlugsList();
     }
 
     @GetMapping
