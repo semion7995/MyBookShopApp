@@ -4,6 +4,8 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
+import java.util.Date;
+
 /*
 CREATE TABLE books (
                        id_book INT AUTO_INCREMENT PRIMARY KEY,
@@ -20,7 +22,8 @@ CREATE TABLE books (
 public class Book {
     private Integer idBook;
     private Integer authorId;
-
+    private Integer rating;
+    private String releaseDate;
     private String author;
     private String title;
     private String priceOld;

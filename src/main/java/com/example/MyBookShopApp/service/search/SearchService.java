@@ -1,4 +1,4 @@
-package com.example.MyBookShopApp.service;
+package com.example.MyBookShopApp.service.search;
 
 import com.example.MyBookShopApp.data.search.Search;
 import org.springframework.beans.factory.annotation.Autowired;

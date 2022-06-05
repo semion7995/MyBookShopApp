@@ -1,9 +1,9 @@
-package com.example.MyBookShopApp.data.documents;
+package com.example.MyBookShopApp.data;
 
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
 @Getter@Setter@ToString
-public class Document {
+public class SignIn {
 }

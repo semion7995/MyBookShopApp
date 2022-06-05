@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 @Controller
@@ -24,6 +26,16 @@ public class CartController {
     @ModelAttribute("getCartList")
     public List<Cart> getCartsList(){
         return cartService.getCartsList();
+    }
+
+    @ModelAttribute("getServerTime")
+    public String getServerTime(){
+        return new SimpleDateFormat("HH:MM:ss").format(new Date());
+    }
+
+    @ModelAttribute("messageTemplate")
+    public String getMessageTemplate(){
+        return "searchbar.placeholder2";
     }
 
     @GetMapping
