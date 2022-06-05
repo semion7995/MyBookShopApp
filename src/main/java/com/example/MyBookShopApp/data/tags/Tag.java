@@ -6,6 +6,6 @@ import lombok.ToString;
 
 @Getter@Setter@ToString
 public class Tag {
-    private Integer id_tag;
-    private String tag_name;
+    private Integer idTag;
+    private String tagName;
 }

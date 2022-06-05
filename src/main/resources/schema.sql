@@ -4,15 +4,6 @@ DROP TABLE IF EXISTS authors;
 DROP TABLE IF EXISTS books;
 DROP TABLE IF EXISTS tags;
 
--- CREATE TABLE books (
---                        id_book INT AUTO_INCREMENT PRIMARY KEY,
---                        authorId INT NOT NULL,
---                        release_data date NOT NULL,
---                        title VARCHAR(250) NOT NULL,
---                        priceOld  VARCHAR(250) DEFAULT NULL,
---                        price VARCHAR(250) DEFAULT NULL
--- );
-
 create table books (
                        id_book INT AUTO_INCREMENT PRIMARY KEY,
                        authorId INT NOT NULL ,
@@ -34,13 +25,3 @@ create table tags (
     tag_name VARCHAR(250)
 );
 
--- private Integer id_tag;
--- private String tag_name;
-
--- CREATE TABLE genres(
---     id_genres INT AUTO_INCREMENT PRIMARY KEY ,
---
--- )
-
-
--- select * from authors left join books on books.id_book = authors.bookId;

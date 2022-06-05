@@ -1,4 +1,3 @@
-
 insert into authors (id_author, first_name, last_name) values (1, 'Gussy', 'Barth');
 insert into authors (id_author, first_name, last_name) values (2, 'Humphrey', 'Brunesco');
 insert into authors (id_author, first_name, last_name) values (3, 'Birgitta', 'Youde');

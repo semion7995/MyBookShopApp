@@ -1,6 +1,8 @@
 package com.example.MyBookShopApp.controllers;
 import com.example.MyBookShopApp.data.Book;
+import com.example.MyBookShopApp.data.tags.Tag;
 import com.example.MyBookShopApp.service.books.BookService;
+import com.example.MyBookShopApp.service.tags.TagsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,10 +15,12 @@ import java.util.List;
 public class MainPageController {
 
     private final BookService bookService;
+    private final TagsService tagsService;
 
     @Autowired
-    public MainPageController(BookService bookService) {
+    public MainPageController(BookService bookService, TagsService tagsService) {
         this.bookService = bookService;
+        this.tagsService = tagsService;
     }
 
 
@@ -33,6 +37,12 @@ public class MainPageController {
     public List<Book> getBooksPopularList(){
         return bookService.getBooksPopularList();
     }
+
+    @ModelAttribute("getTagsList")
+    public List<Tag> getTagsList(){
+        return tagsService.getTagsList();
+    }
+
 
     @ModelAttribute("getServerTime")
     public String getServerTime(){
