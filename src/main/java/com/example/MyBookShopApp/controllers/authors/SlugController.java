@@ -2,6 +2,7 @@ package com.example.MyBookShopApp.controllers.authors;
 
 import com.example.MyBookShopApp.data.authors.Slug;
 import com.example.MyBookShopApp.service.authors.SlugAuthorService;
+import com.example.MyBookShopApp.util.DatePlasecholder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -27,7 +28,7 @@ public class SlugController {
 
     @ModelAttribute("getServerTime")
     public String getServerTime(){
-        return new SimpleDateFormat("HH:MM:ss").format(new Date());
+        return new SimpleDateFormat(DatePlasecholder.PATTERN_DATE, DatePlasecholder.LOCALE).format(new Date());
     }
     @ModelAttribute("messageTemplate")
     public String getMessageTemplate(){

@@ -1,9 +1,11 @@
 package com.example.MyBookShopApp.controllers.genres;
 
-import com.example.MyBookShopApp.data.genres.TagSlugGenres;
+import com.example.MyBookShopApp.data.genres.tags.TagGenresPage;
 import com.example.MyBookShopApp.service.genres.TagGenresSlugService;
+import com.example.MyBookShopApp.util.DatePlasecholder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -23,15 +25,17 @@ public class TagGenresSlugController {
 
     @ModelAttribute("getServerTime")
     public String getServerTime(){
-        return new SimpleDateFormat("HH:MM:ss").format(new Date());
+        return new SimpleDateFormat(DatePlasecholder.PATTERN_DATE, DatePlasecholder.LOCALE).format(new Date());
     }
     @ModelAttribute("messageTemplate")
     public String getMessageTemplate(){
         return "searchbar.placeholder2";
     }
 
-    @ModelAttribute("getSlugGenresList")
-    public List<TagSlugGenres> getSlugGenresList(){
-        return tagGenresSlugService.getTagSlugGenresList();
+
+    @GetMapping
+    public String getGenresSlugPage(){
+        return "genres/slug";
     }
+
 }

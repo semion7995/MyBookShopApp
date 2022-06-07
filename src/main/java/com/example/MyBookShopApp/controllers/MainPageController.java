@@ -3,6 +3,7 @@ import com.example.MyBookShopApp.data.Book;
 import com.example.MyBookShopApp.data.tags.TagMainPage;
 import com.example.MyBookShopApp.service.books.BookService;
 import com.example.MyBookShopApp.service.tags.TagsMainService;
+import com.example.MyBookShopApp.util.DatePlasecholder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -10,6 +11,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 @Controller
 public class MainPageController {
@@ -28,6 +30,7 @@ public class MainPageController {
     public List<Book> getRecommendedBooks(){
         return bookService.getBooksRecommendedList();
     }
+
     @ModelAttribute("getBooksNoveltiesList")
     public List<Book> getBooksNoveltiesList(){
         return bookService.getBooksNoveltiesList();
@@ -46,7 +49,7 @@ public class MainPageController {
 
     @ModelAttribute("getServerTime")
     public String getServerTime(){
-        return new SimpleDateFormat("HH:MM:ss").format(new Date());
+        return new SimpleDateFormat(DatePlasecholder.PATTERN_DATE, DatePlasecholder.LOCALE).format(new Date());
     }
     @ModelAttribute("messageTemplate")
     public String getMessageTemplate(){
