@@ -5,7 +5,7 @@ import lombok.Setter;
 import lombok.ToString;
 
 @Getter@Setter@ToString
-public class Tag {
-    private Integer idTag;
-    private String tagName;
+public class TagMainPage {
+    private Integer idTagMainPage;
+    private String tagNameMainPage;
 }

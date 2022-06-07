@@ -32,8 +32,6 @@ public class AuthorsService {
             author.setLastName(rs.getString("last_name"));
             return author;
         });
-
-
         return authors.stream().collect(Collectors.groupingBy((Author a)-> { return a.getLastName().toUpperCase().substring(0,1);}));
     }
 }

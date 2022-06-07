@@ -1,7 +1,7 @@
 package com.example.MyBookShopApp.controllers.authors;
 
 import com.example.MyBookShopApp.data.authors.Slug;
-import com.example.MyBookShopApp.service.authors.SlugService;
+import com.example.MyBookShopApp.service.authors.SlugAuthorService;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -14,15 +14,15 @@ import java.util.List;
 @RequestMapping("/authors/slug")
 public class SlugController {
 
-    private final SlugService slugService;
+    private final SlugAuthorService slugAuthorService;
 
-    public SlugController(SlugService slugService) {
-        this.slugService = slugService;
+    public SlugController(SlugAuthorService slugAuthorService) {
+        this.slugAuthorService = slugAuthorService;
     }
 
     @ModelAttribute("getSlugList")
     public List<Slug> getSlugList(){
-        return slugService.getSlugsList();
+        return slugAuthorService.getSlugsList();
     }
 
     @ModelAttribute("getServerTime")

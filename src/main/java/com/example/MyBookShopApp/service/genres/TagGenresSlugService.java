@@ -1,6 +1,7 @@
-package com.example.MyBookShopApp.service.authors;
+package com.example.MyBookShopApp.service.genres;
 
-import com.example.MyBookShopApp.data.authors.Slug;
+
+import com.example.MyBookShopApp.data.genres.TagSlugGenres;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
@@ -9,15 +10,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
-public class SlugService {
+public class TagGenresSlugService {
     private JdbcTemplate jdbcTemplate;
 
     @Autowired
-    public SlugService(JdbcTemplate jdbcTemplate) {
+    public TagGenresSlugService(JdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
     }
 
-    public List<Slug> getSlugsList(){
+
+    public List<TagSlugGenres> getTagSlugGenresList() {
         return new ArrayList<>();
     }
 }
