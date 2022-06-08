@@ -9,24 +9,24 @@ import org.springframework.web.servlet.i18n.SessionLocaleResolver;
 
 import java.util.Locale;
 
-@Configuration
-public class LocalChangeConfig implements WebMvcConfigurer {
-    @Bean
-    public SessionLocaleResolver localResolver(){
-        SessionLocaleResolver localeResolver = new SessionLocaleResolver();
-        localeResolver.setDefaultLocale(Locale.ENGLISH);
-        return localeResolver;
-    }
-
-    @Bean
-    public LocaleChangeInterceptor localeChangeInterceptor(){
-        LocaleChangeInterceptor localeChangeInterceptor = new LocaleChangeInterceptor();
-        localeChangeInterceptor.setParamName("lang");
-        return localeChangeInterceptor;
-    }
-
-    @Override
-    public void addInterceptors(InterceptorRegistry registry) {
-        registry.addInterceptor(localeChangeInterceptor());
-    }
+//@Configuration
+public class LocalChangeConfig {//implements WebMvcConfigurer {
+//    @Bean
+//    public SessionLocaleResolver localResolver(){
+//        SessionLocaleResolver localeResolver = new SessionLocaleResolver();
+//        localeResolver.setDefaultLocale(Locale.ENGLISH);
+//        return localeResolver;
+//    }
+//
+//    @Bean
+//    public LocaleChangeInterceptor localeChangeInterceptor(){
+//        LocaleChangeInterceptor localeChangeInterceptor = new LocaleChangeInterceptor();
+//        localeChangeInterceptor.setParamName("lang");
+//        return localeChangeInterceptor;
+//    }
+//
+//    @Override
+//    public void addInterceptors(InterceptorRegistry registry) {
+//        registry.addInterceptor(localeChangeInterceptor());
+//    }
 }

@@ -55,11 +55,18 @@ public class TagGenresSlugService {
             tagGenresPage.setEmptyTags(emptyTags);
             tagGenresPageListCopy.add(tagGenresPage);
         }
-        Map<String, List<EmptyTag>> container2 = new HashMap<>(container);
-        Map<String, List<EmptyTag>> container3 = new HashMap<>(container);
-
         tagGenresPageList = null;
-
         return tagGenresPageListCopy;
+    }
+
+
+    public void getHeaderTagFindByid(String id) {
+        int identification = Integer.parseInt(id);
+
+        List<TagGenresPage> fullTagsPages = getFilledHeaderTagGenresPage();
+        for (TagGenresPage tag : fullTagsPages) {
+
+        }
+
     }
 }
