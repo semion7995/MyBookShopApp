@@ -1,0 +1,29 @@
+.Header-rowMain{
+    background-image: url("https://images.pexels.com/photos/142497/pexels-photo-142497.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1");
+    min-height: 500px;
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.Footer{
+    background-image: url("https://images.pexels.com/photos/142497/pexels-photo-142497.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1");
+    min-height: 500px;
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.myClass{
+    margin-top: 180px;
+}
+.myFooter{
+    position:absolute;
+    bottom:0px;
+    /*opacity: .2;*/
+}
+.MyTransporent{
+    /*position: absolute;*/
+    z-index: -1;
+    opacity: .2;
+}
