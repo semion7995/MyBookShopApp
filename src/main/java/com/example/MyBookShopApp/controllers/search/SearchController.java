@@ -1,6 +1,4 @@
 package com.example.MyBookShopApp.controllers.search;
-
-import com.example.MyBookShopApp.data.search.Search;
 import com.example.MyBookShopApp.service.search.SearchService;
 import com.example.MyBookShopApp.util.DatePlasecholder;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,10 +22,6 @@ public class SearchController {
         this.searchService = searchService;
     }
 
-    @ModelAttribute("getSearchList")
-    public List<Search> getSearchList(){
-        return searchService.getSearchList();
-    }
 
     @ModelAttribute("getServerTime")
     public String getServerTime(){

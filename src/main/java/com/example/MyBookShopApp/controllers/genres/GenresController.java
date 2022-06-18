@@ -1,8 +1,5 @@
 package com.example.MyBookShopApp.controllers.genres;
 
-import com.example.MyBookShopApp.data.genres.GenresHeader;
-import com.example.MyBookShopApp.data.genres.tags.EmptyTag;
-import com.example.MyBookShopApp.data.genres.tags.TagGenresPage;
 import com.example.MyBookShopApp.service.genres.GenresService;
 import com.example.MyBookShopApp.service.genres.TagGenresSlugService;
 import com.example.MyBookShopApp.util.DatePlasecholder;
@@ -31,10 +28,6 @@ public class GenresController {
         this.genresService = genresService;
         this.tagGenresSlugService = tagGenresSlugService;
     }
-    @ModelAttribute("getGenresList")
-    public List<GenresHeader> getGenresList(){
-        return genresService.getGenresList();
-    }
     @ModelAttribute("getServerTime")
     public String getServerTime(){
         return new SimpleDateFormat(DatePlasecholder.PATTERN_DATE, DatePlasecholder.LOCALE).format(new Date());
@@ -44,10 +37,6 @@ public class GenresController {
         return "searchbar.placeholder2";
     }
 
-    @ModelAttribute("getFilledHeaderTagGenresPage")
-    public List<TagGenresPage> getTagGenresPage(){
-        return tagGenresSlugService.getFilledHeaderTagGenresPage();
-    }
 
     @GetMapping
     public String genresPage(Model model){

@@ -1,6 +1,5 @@
 package com.example.MyBookShopApp.controllers;
 
-import com.example.MyBookShopApp.data.Faq;
 import com.example.MyBookShopApp.service.FaqService;
 import com.example.MyBookShopApp.util.DatePlasecholder;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,10 +23,6 @@ public class FaqController {
         this.faqService = faqService;
     }
 
-    @ModelAttribute("getFaqsList")
-    public List<Faq> getFaqsList(){
-        return faqService.getFaqsList();
-    }
 
     @ModelAttribute("getServerTime")
     public String getServerTime(){

@@ -1,6 +1,5 @@
 package com.example.MyBookShopApp.controllers;
 
-import com.example.MyBookShopApp.data.SignIn;
 import com.example.MyBookShopApp.service.SignInService;
 import com.example.MyBookShopApp.util.DatePlasecholder;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,10 +23,6 @@ public class SignInController {
         this.signInService = signInService;
     }
 
-    @ModelAttribute("getSignInList")
-    public List<SignIn> getSignInList(){
-        return signInService.getSignInList();
-    }
 
     @ModelAttribute("getServerTime")
     public String getServerTime(){

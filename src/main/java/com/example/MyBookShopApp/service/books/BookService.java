@@ -1,10 +1,6 @@
 package com.example.MyBookShopApp.service.books;
 
 import com.example.MyBookShopApp.data.Book;
-import com.example.MyBookShopApp.data.books.Popular;
-import com.example.MyBookShopApp.data.books.Recent;
-import com.example.MyBookShopApp.data.books.Slug;
-import com.example.MyBookShopApp.util.ConstantVariable;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
@@ -47,14 +43,4 @@ public class BookService {
      return 0;
     }
 
-    public List<Popular> getBooksPopularsList() {
-        return new ArrayList<>();
-    }
-    public List<Recent> getBooksRecentList() {
-        return new ArrayList<>();
-    }
-
-    public List<Slug> getBooksSlugList() {
-        return new ArrayList<>();
-    }
 }

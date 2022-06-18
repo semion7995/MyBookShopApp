@@ -1,6 +1,5 @@
 package com.example.MyBookShopApp.controllers;
 
-import com.example.MyBookShopApp.data.Postponed;
 import com.example.MyBookShopApp.service.PostponedService;
 import com.example.MyBookShopApp.util.DatePlasecholder;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,10 +21,6 @@ public class PostponedController {
         this.postponedService = postponedService;
     }
 
-    @ModelAttribute("getPostponedList")
-    public List<Postponed> getPostponedList(){
-        return postponedService.getPostponedsList();
-    }
 
     @ModelAttribute("getServerTime")
     public String getServerTime(){

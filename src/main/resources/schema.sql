@@ -12,7 +12,7 @@ create table book --книга
 (
     id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
     pub_date DATE NOT NULL,                             --дата публикации
-    is_bestseller TINYINT NOT NULL ,                    --книга очень популярна, является бестселлером
+    is_bestseller TINYINT NOT NULL DEFAULT 0,                    --книга очень популярна, является бестселлером
     slug VARCHAR(255) NOT NULL,                         --мнемонический идентификатор книги
     title VARCHAR(255) NOT NULL,                        --название книги
     image_ VARCHAR(255) NOT NULL,                       --изображение обложки

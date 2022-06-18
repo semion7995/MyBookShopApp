@@ -1,6 +1,5 @@
 package com.example.MyBookShopApp.service;
 
-import com.example.MyBookShopApp.data.Contact;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
@@ -17,7 +16,4 @@ public class ContactsService {
         this.jdbcTemplate = jdbcTemplate;
     }
 
-    public List<Contact> getContactsList(){
-        return new ArrayList<>();
-    }
 }

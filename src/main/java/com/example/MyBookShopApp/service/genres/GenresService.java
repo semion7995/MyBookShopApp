@@ -1,6 +1,5 @@
 package com.example.MyBookShopApp.service.genres;
 
-import com.example.MyBookShopApp.data.genres.GenresHeader;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
@@ -18,9 +17,4 @@ public class GenresService {
     }
 
 
-    public List<GenresHeader> getGenresList() {
-//        List<GenresHeader> genresHeaders = jdbcTemplate.query()
-
-        return new ArrayList<>();
-    }
 }

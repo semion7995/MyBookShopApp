@@ -1,6 +1,5 @@
 package com.example.MyBookShopApp.controllers;
 
-import com.example.MyBookShopApp.data.About;
 import com.example.MyBookShopApp.service.AboutService;
 import com.example.MyBookShopApp.util.DatePlasecholder;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,10 +24,6 @@ public class AboutController {
         this.aboutService = aboutService;
     }
 
-    @ModelAttribute("getAboutList")
-    public List<About> getAboutList(){
-        return aboutService.getAboutList();
-    }
 
     @ModelAttribute("getServerTime")
     public String getServerTime(){

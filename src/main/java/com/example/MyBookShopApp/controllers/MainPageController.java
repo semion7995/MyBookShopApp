@@ -1,6 +1,5 @@
 package com.example.MyBookShopApp.controllers;
 import com.example.MyBookShopApp.data.Book;
-import com.example.MyBookShopApp.data.tags.TagMainPage;
 import com.example.MyBookShopApp.service.books.BookService;
 import com.example.MyBookShopApp.service.tags.TagsMainService;
 import com.example.MyBookShopApp.util.DatePlasecholder;
@@ -41,10 +40,6 @@ public class MainPageController {
         return bookService.getBooksPopularList();
     }
 
-    @ModelAttribute("getTagsList")
-    public List<TagMainPage> getTagsList(){
-        return tagsMainService.getTagsList();
-    }
 
 
     @ModelAttribute("getServerTime")

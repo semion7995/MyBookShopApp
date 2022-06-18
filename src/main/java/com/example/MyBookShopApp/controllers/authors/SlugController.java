@@ -1,6 +1,5 @@
 package com.example.MyBookShopApp.controllers.authors;
 
-import com.example.MyBookShopApp.data.authors.Slug;
 import com.example.MyBookShopApp.service.authors.SlugAuthorService;
 import com.example.MyBookShopApp.util.DatePlasecholder;
 import org.springframework.stereotype.Controller;
@@ -21,10 +20,6 @@ public class SlugController {
         this.slugAuthorService = slugAuthorService;
     }
 
-    @ModelAttribute("getSlugList")
-    public List<Slug> getSlugList(){
-        return slugAuthorService.getSlugsList();
-    }
 
     @ModelAttribute("getServerTime")
     public String getServerTime(){

@@ -1,5 +1,5 @@
 package com.example.MyBookShopApp.controllers.books;
-import com.example.MyBookShopApp.data.books.Recent;
+
 import com.example.MyBookShopApp.service.books.BookService;
 import com.example.MyBookShopApp.util.DatePlasecholder;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,10 +32,6 @@ public class BooksRecentController {
         return "searchbar.placeholder2";
     }
 
-    @ModelAttribute("getBooksRecentList")
-    public List<Recent> getRecommendedBooks(){
-        return bookService.getBooksRecentList();
-    }
 
     @GetMapping
     public String booksRecentPage(){

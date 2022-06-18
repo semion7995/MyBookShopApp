@@ -1,6 +1,5 @@
 package com.example.MyBookShopApp.controllers;
 
-import com.example.MyBookShopApp.data.Cart;
 import com.example.MyBookShopApp.service.CartService;
 import com.example.MyBookShopApp.util.DatePlasecholder;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,11 +21,6 @@ public class CartController {
     @Autowired
     public CartController(CartService cartService) {
         this.cartService = cartService;
-    }
-
-    @ModelAttribute("getCartList")
-    public List<Cart> getCartsList(){
-        return cartService.getCartsList();
     }
 
     @ModelAttribute("getServerTime")

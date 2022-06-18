@@ -1,6 +1,5 @@
 package com.example.MyBookShopApp.controllers.documents;
 
-import com.example.MyBookShopApp.data.documents.Document;
 import com.example.MyBookShopApp.service.documents.DocumentService;
 import com.example.MyBookShopApp.util.DatePlasecholder;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,11 +31,6 @@ public class DocumentsController {
     @ModelAttribute("messageTemplate")
     public String getMessageTemplate(){
         return "searchbar.placeholder2";
-    }
-
-    @ModelAttribute("getDocumentsList")
-    public List<Document> getDocumentsList(){
-        return documentService.getDocumentsList();
     }
 
     @GetMapping

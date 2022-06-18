@@ -1,6 +1,5 @@
 package com.example.MyBookShopApp.controllers.books;
 
-import com.example.MyBookShopApp.data.books.Popular;
 import com.example.MyBookShopApp.service.books.BookService;
 import com.example.MyBookShopApp.util.DatePlasecholder;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,10 +33,7 @@ public class BooksPopularController {
         return "searchbar.placeholder2";
     }
 
-    @ModelAttribute("booksList")
-    public List<Popular> getBooksPopularsList(){
-        return bookService.getBooksPopularsList();
-    }
+
 
     @GetMapping
     public String booksPopularPage(){

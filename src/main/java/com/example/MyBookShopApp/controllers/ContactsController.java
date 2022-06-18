@@ -1,6 +1,5 @@
 package com.example.MyBookShopApp.controllers;
 
-import com.example.MyBookShopApp.data.Contact;
 import com.example.MyBookShopApp.service.ContactsService;
 import com.example.MyBookShopApp.util.DatePlasecholder;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,10 +25,6 @@ public class ContactsController {
     }
 
 
-    @ModelAttribute("getContactsList")
-    public List<Contact> getContactsList(){
-        return contactsService.getContactsList();
-    }
 
     @ModelAttribute("getServerTime")
     public String getServerTime(){

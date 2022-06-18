@@ -1,6 +1,5 @@
 package com.example.MyBookShopApp.controllers.books;
 
-import com.example.MyBookShopApp.data.books.Slug;
 import com.example.MyBookShopApp.service.books.BookService;
 import com.example.MyBookShopApp.util.DatePlasecholder;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,10 +32,6 @@ public class BooksSlugController {
         return "searchbar.placeholder2";
     }
 
-    @ModelAttribute("getBooksSlugList")
-    public List<Slug> getBooksSlugList(){
-        return bookService.getBooksSlugList();
-    }
 
     @GetMapping
     public String bookSlugController(){
