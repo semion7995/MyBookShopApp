@@ -42,6 +42,6 @@ public class AboutController {
 
     @GetMapping
     public String aboutPage(){
-        return "/about";
+        return "about";
     }
 }

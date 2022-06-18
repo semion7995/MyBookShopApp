@@ -1,8 +1,6 @@
 package com.example.MyBookShopApp.controllers.authors;
-
 import com.example.MyBookShopApp.data.authors.Author;
 import com.example.MyBookShopApp.service.authors.AuthorsService;
-import com.example.MyBookShopApp.service.authors.SlugAuthorService;
 import com.example.MyBookShopApp.util.DatePlasecholder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -13,10 +11,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
-
-
 @Controller
-@RequestMapping("/authors")
 public class AuthorsController {
 
     private final AuthorsService authorsService;
@@ -41,6 +36,7 @@ public class AuthorsController {
     }
 
     @GetMapping
+    @RequestMapping("/authors")
     public String authorsPage() {
         return "/authors/index";
     }

@@ -34,9 +34,10 @@ public class TagGenresSlugController {
 
 
     @GetMapping
-    public String getGenresSlugPage(@RequestParam String tagType, @RequestParam String id, @RequestParam String headerName, @RequestParam String lang ,Model model){
+    public String getGenresSlugPage(@RequestParam String tagType, @RequestParam String id, @RequestParam String headerName,Model model){
+//        , @RequestParam String lang
+//        model.addAttribute("lang", lang);
         model.addAttribute("headerTagName", headerName);
-        model.addAttribute("lang", lang);
         if (tagType.equalsIgnoreCase("headerTag")){
             tagGenresSlugService.getHeaderTagFindByid(id);
         }
@@ -45,5 +46,4 @@ public class TagGenresSlugController {
         }
         return "genres/slug";
     }
-
 }

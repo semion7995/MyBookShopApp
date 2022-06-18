@@ -1553,6 +1553,7 @@
 }
 
 .Footer {
+
   margin-top: auto;
   padding: 0;
   width: 100%;
@@ -1578,6 +1579,7 @@
   color: #86878a;
 }
 .Footer-main {
+
   padding-top: 34px;
   padding-left: 10px;
   padding-right: 10px;
@@ -1849,7 +1851,6 @@
   }
 }
 .Header-rowMain {
-
   box-shadow: 0 0 13px 1px rgba(0,0,0,0.09);
   background-color: #fff;
   z-index: 10;

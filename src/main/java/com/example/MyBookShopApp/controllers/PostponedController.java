@@ -38,6 +38,6 @@ public class PostponedController {
 
     @GetMapping("/postponed")
     public String postponedPage(){
-        return "/postponed";
+        return "postponed";
     }
 }

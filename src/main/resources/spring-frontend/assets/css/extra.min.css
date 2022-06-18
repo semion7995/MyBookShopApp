@@ -1727,6 +1727,7 @@
 }
 
 .Footer-main {
+
     padding-top: 34px;
     padding-left: 10px;
     padding-right: 10px;
@@ -2013,12 +2014,6 @@
 }
 
 .Header-rowMain {
-    background-image: url("https://images.pexels.com/photos/142497/pexels-photo-142497.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1");
-    min-height: 500px;
-    background-attachment: fixed;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
     box-shadow: 0 0 13px 1px rgba(0, 0, 0, .09);
     background-color: #fff;
     z-index: 10;
