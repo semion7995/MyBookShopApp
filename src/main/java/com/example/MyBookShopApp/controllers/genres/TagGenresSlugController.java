@@ -1,5 +1,4 @@
 package com.example.MyBookShopApp.controllers.genres;
-
 import com.example.MyBookShopApp.service.genres.TagGenresSlugService;
 import com.example.MyBookShopApp.util.DatePlasecholder;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,7 +8,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -34,16 +32,19 @@ public class TagGenresSlugController {
 
 
     @GetMapping
-    public String getGenresSlugPage(@RequestParam String tagType, @RequestParam String id, @RequestParam String headerName,Model model){
+    public String getGenresSlugPage(@RequestParam(required = false) String tagType, @RequestParam(required = false) String id, @RequestParam (required = false) String headerName,Model model){
 //        , @RequestParam String lang
 //        model.addAttribute("lang", lang);
-        model.addAttribute("headerTagName", headerName);
-        if (tagType.equalsIgnoreCase("headerTag")){
-            tagGenresSlugService.getHeaderTagFindByid(id);
-        }
-        else if (tagType.equalsIgnoreCase("emptyTag")){
-            new String();
+        if (tagType!=null&&id!=null&&headerName!=null){
+            model.addAttribute("headerTagName", headerName);
+            if (tagType.equalsIgnoreCase("headerTag")){
+                tagGenresSlugService.getHeaderTagFindByid(id);
+            }
+            else if (tagType.equalsIgnoreCase("emptyTag")){
+                new String();
+            }
         }
         return "genres/slug";
     }
+
 }
