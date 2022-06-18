@@ -14,7 +14,6 @@ import java.util.Date;
 @Controller
 @RequestMapping("/signup")
 public class SignUpController {
-
     private final SignUpService signUpService;
 
     @Autowired

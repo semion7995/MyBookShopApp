@@ -1,8 +1,9 @@
-package com.example.MyBookShopApp.data;
+package com.example.MyBookShopApp.dto;
 
 import lombok.Data;
 
-public class Book {
+@Data
+public class BookDto {
     private Integer id;
     private String pubDate;
     private Boolean isBestseller;

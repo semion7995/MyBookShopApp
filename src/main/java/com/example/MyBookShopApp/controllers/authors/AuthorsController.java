@@ -1,5 +1,5 @@
 package com.example.MyBookShopApp.controllers.authors;
-import com.example.MyBookShopApp.data.authors.Author;
+
 import com.example.MyBookShopApp.service.authors.AuthorsService;
 import com.example.MyBookShopApp.util.DatePlasecholder;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,11 +20,11 @@ public class AuthorsController {
     public AuthorsController(AuthorsService authorsService) {
         this.authorsService = authorsService;
     }
-
-    @ModelAttribute("getAuthorsMap")
-    public Map<String, List<Author>> getAuthorsMap() {
-        return authorsService.getAuthorsMap();
-    }
+//
+//    @ModelAttribute("getAuthorsMap")
+//    public Map<String, List<Author>> getAuthorsMap() {
+//        return authorsService.getAuthorsMap();
+//    }
 
     @ModelAttribute("getServerTime")
     public String getServerTime(){

@@ -34,7 +34,7 @@ public class BooksPopularController {
         return "searchbar.placeholder2";
     }
 
-    @ModelAttribute("getBooksPopularsList")
+    @ModelAttribute("booksList")
     public List<Popular> getBooksPopularsList(){
         return bookService.getBooksPopularsList();
     }

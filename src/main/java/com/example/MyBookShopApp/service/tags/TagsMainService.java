@@ -19,12 +19,6 @@ public class TagsMainService {
     }
 
     public List<TagMainPage> getTagsList(){
-        List<TagMainPage> tagMainPages = jdbcTemplate.query("SELECT * FROM tags_main_page", (ResultSet rs, int rowNum) ->{
-            TagMainPage tagMainPage = new TagMainPage();
-            tagMainPage.setIdTagMainPage(rs.getInt("ID_TAG_MAIN_PAGE"));
-            tagMainPage.setTagNameMainPage(rs.getString("TAG_NAME_MAIN_PAGE"));
-            return tagMainPage;
-        });
-        return new ArrayList<>(tagMainPages);
+        return new ArrayList<>();
     }
 }
