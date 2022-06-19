@@ -145,7 +145,7 @@ insert into book2author (book_id, author_id, sort_index) values (1, 5, 3);
 insert into book2author (book_id, author_id, sort_index) values (2, 24, 1);
 insert into book2author (book_id, author_id, sort_index) values (2, 21, 2);
 insert into book2author (book_id, author_id, sort_index) values (3, 19, 1);
-insert into book2author (book_id, author_id, sort_index) values (3, 19, 2);
+insert into book2author (book_id, author_id, sort_index) values (3, 18, 2);
 insert into book2author (book_id, author_id, sort_index) values (3, 4, 3);
 insert into book2author (book_id, author_id, sort_index) values (4, 27, 1);
 insert into book2author (book_id, author_id, sort_index) values (4, 8, 2);
@@ -165,7 +165,7 @@ insert into book2author (book_id, author_id, sort_index) values (9, 8, 3);
 insert into book2author (book_id, author_id, sort_index) values (10, 17, 1);
 insert into book2author (book_id, author_id, sort_index) values (10, 30, 2);
 insert into book2author (book_id, author_id, sort_index) values (11, 16, 1);
-insert into book2author (book_id, author_id, sort_index) values (11, 16, 2);
+insert into book2author (book_id, author_id, sort_index) values (11, 15, 2);
 insert into book2author (book_id, author_id, sort_index) values (11, 2, 3);
 insert into book2author (book_id, author_id, sort_index) values (12, 10, 1);
 insert into book2author (book_id, author_id, sort_index) values (12, 6, 2);
@@ -241,10 +241,10 @@ insert into book2author (book_id, author_id, sort_index) values (40, 32, 1);
 insert into book2author (book_id, author_id, sort_index) values (40, 23, 2);
 insert into book2author (book_id, author_id, sort_index) values (41, 16, 1);
 insert into book2author (book_id, author_id, sort_index) values (41, 31, 2);
-insert into book2author (book_id, author_id, sort_index) values (41, 29, 3);
-insert into book2author (book_id, author_id, sort_index) values (42, 10, 1);
-insert into book2author (book_id, author_id, sort_index) values (42, 4, 2);
-insert into book2author (book_id, author_id, sort_index) values (43, 31, 1);
+insert into book2author (book_id, author_id, sort_index) values (41, 25, 3);
+insert into book2author (book_id, author_id, sort_index) values (42, 26, 1);
+insert into book2author (book_id, author_id, sort_index) values (42, 28, 2);
+insert into book2author (book_id, author_id, sort_index) values (43, 33, 1);
 insert into book2author (book_id, author_id, sort_index) values (43, 27, 2);
 insert into book2author (book_id, author_id, sort_index) values (43, 15, 3);
 insert into book2author (book_id, author_id, sort_index) values (44, 6, 1);
@@ -386,3 +386,134 @@ insert into book2author (book_id, author_id, sort_index) values (98, 1, 0);
 insert into book2author (book_id, author_id, sort_index) values (99, 19, 0);
 insert into book2author (book_id, author_id, sort_index) values (100, 5, 0);
 -- book2author CONTENT - FINISH
+
+-- book_review CONTENT - START
+insert into book_review (book_id, user_id, time_, text_) values (1, 1, '2021-05-17 12:30:29', 'one review !!!'  );
+insert into book_review (book_id, user_id, time_, text_) values (2, 2, '2022-06-18 22:33:33', 'two review !!!'  );
+-- book_review CONTENT - FINISH
+
+-- book_review_like CONTENT - START
+insert into book_review_like (review_id, user_id, time_, value_) values ( 1, 2, '2021-07-19 02:35:35', 1 );
+insert into book_review_like (review_id, user_id, time_, value_) values ( 2, 1, '2022-08-30 05:41:41', -1 );
+-- book_review_like CONTENT - FINISH
+
+-- genre CONTENT - START
+insert into genre (parent_id, slug, name) VALUES ( NULL,  'zontrax', 'Zontrax');
+insert into genre (parent_id, slug, name) VALUES ( NULL,  'wrapsafe', 'Wrapsafe');
+insert into genre (parent_id, slug, name) VALUES ( NULL,  'zaam-dox', 'Zaam-dox');
+insert into genre (parent_id, slug, name) VALUES ( NULL,  'alpha', 'Alpha');
+insert into genre (parent_id, slug, name) VALUES ( NULL,  'y-find', 'Y-find');
+insert into genre (parent_id, slug, name) VALUES ( NULL,  'flowdesc', 'Flowdesc');
+insert into genre (parent_id, slug, name) VALUES ( NULL,  'blowdesc', 'Blowdesc');
+insert into genre (parent_id, slug, name) VALUES ( NULL,  'lotlux', 'Lotlux');
+insert into genre (parent_id, slug, name) VALUES ( NULL,  'regrant', 'Regrant');
+insert into genre (parent_id, slug, name) VALUES ( NULL,  'veribet', 'Veribet');
+insert into genre (parent_id, slug, name) VALUES ( 1,  'myrmetridactyla', 'Myrmecophaga tridactyla');
+insert into genre (parent_id, slug, name) VALUES ( 1,  'senegalensis', 'Streptopelia senegalensis');
+insert into genre (parent_id, slug, name) VALUES ( 1,  'ursinus', 'Vombatus ursinus');
+insert into genre (parent_id, slug, name) VALUES ( 1,  'graspus', 'Graspus graspus');
+insert into genre (parent_id, slug, name) VALUES ( 1,  'cristata', 'Hystrix cristata');
+insert into genre (parent_id, slug, name) VALUES ( 1,  'novaehollandiae', 'Cereopsis novaehollandiae');
+insert into genre (parent_id, slug, name) VALUES ( 1,  'mephitis', 'Mephitis mephitis');
+insert into genre (parent_id, slug, name) VALUES ( 1,  'hoffmani', 'Choloepus hoffmani');
+insert into genre (parent_id, slug, name) VALUES ( 1,  'unavailable', 'Unavailable');
+insert into genre (parent_id, slug, name) VALUES ( 1,  'tristis', 'Acridotheres tristis');
+
+insert into genre (parent_id, slug, name) VALUES ( 2,  'eugenii', 'Macropus eugenii');
+insert into genre (parent_id, slug, name) VALUES ( 2,  'moschatus', 'Ovibos moschatus');
+insert into genre (parent_id, slug, name) VALUES ( 2,  'murinus', 'Microcebus murinus');
+insert into genre (parent_id, slug, name) VALUES ( 2,  'serval', 'Felis serval');
+insert into genre (parent_id, slug, name) VALUES ( 2,  'cristatus', 'Proteles cristatus');
+insert into genre (parent_id, slug, name) VALUES ( 2,  'paena', 'Certotrichas paena');
+insert into genre (parent_id, slug, name) VALUES ( 2,  'curvirostre', 'Toxostoma curvirostre');
+insert into genre (parent_id, slug, name) VALUES ( 2,  'fulvus', 'Lemur fulvus');
+insert into genre (parent_id, slug, name) VALUES ( 2,  'elegans', 'Geochelone elegans');
+insert into genre (parent_id, slug, name) VALUES ( 2,  'gularis', 'Paroaria gularis');
+
+insert into genre (parent_id, slug, name) VALUES ( 3,  'indica', 'Ratufa indica');
+insert into genre (parent_id, slug, name) VALUES ( 3,  'maculatus', 'Dasyurus maculatus');
+insert into genre (parent_id, slug, name) VALUES ( 3,  'glareola', 'Tringa glareola');
+insert into genre (parent_id, slug, name) VALUES ( 3,  'hermaphroditus', 'Paradoxurus hermaphroditus');
+insert into genre (parent_id, slug, name) VALUES ( 3,  'thula', 'Egretta thula');
+insert into genre (parent_id, slug, name) VALUES ( 3,  'cristata', 'Fulica cristata');
+insert into genre (parent_id, slug, name) VALUES ( 3,  'vulpecula', 'Trichosurus vulpecula');
+insert into genre (parent_id, slug, name) VALUES ( 3,  'robertsi', 'Kobus leche robertsi');
+insert into genre (parent_id, slug, name) VALUES ( 3,  'glauca', 'Prionace glauca');
+insert into genre (parent_id, slug, name) VALUES ( 3,  'giganteus', 'Cordylus giganteus');
+
+insert into genre (parent_id, slug, name) VALUES ( 4,  'frontalis', 'Bos frontalis');
+insert into genre (parent_id, slug, name) VALUES ( 4,  'antigone', 'Grus antigone');
+insert into genre (parent_id, slug, name) VALUES ( 4,  'enviroment', 'Enviroment');
+insert into genre (parent_id, slug, name) VALUES ( 4,  'eunectes', 'Eunectes sp.');
+insert into genre (parent_id, slug, name) VALUES ( 4,  'tuberculifer', 'Myiarchus tuberculifer');
+insert into genre (parent_id, slug, name) VALUES ( 4,  'americanus', 'Ursus americanus');
+insert into genre (parent_id, slug, name) VALUES ( 4,  'concinnus', 'Cercatetus concinnus');
+insert into genre (parent_id, slug, name) VALUES ( 4,  'popachka', 'Popa Zopa');
+insert into genre (parent_id, slug, name) VALUES ( 4,  'orientalis', 'Ovis orientalis');
+insert into genre (parent_id, slug, name) VALUES ( 4,  'mesomelas', 'Canis mesomelas');
+
+insert into genre (parent_id, slug, name) VALUES ( 5,  'peregrinus', 'Falco peregrinus');
+insert into genre (parent_id, slug, name) VALUES ( 5,  'anatinus', 'Ornithorhynchus anatinus');
+insert into genre (parent_id, slug, name) VALUES ( 5,  'robustus', 'Macropus robustus');
+insert into genre (parent_id, slug, name) VALUES ( 5,  'australis', 'Eubalaena australis');
+insert into genre (parent_id, slug, name) VALUES ( 5,  'fulicarius', 'Phalaropus fulicarius');
+insert into genre (parent_id, slug, name) VALUES ( 5,  'elegans', 'Geochelone elegans');
+insert into genre (parent_id, slug, name) VALUES ( 5,  'hemionus', 'Odocoileus hemionus');
+insert into genre (parent_id, slug, name) VALUES ( 5,  'carolina', 'Terrapene carolina');
+insert into genre (parent_id, slug, name) VALUES ( 5,  'urophasianus', 'Centrocercus urophasianus');
+insert into genre (parent_id, slug, name) VALUES ( 5,  'gambelii', 'Callipepla gambelii');
+
+insert into genre (parent_id, slug, name) VALUES ( 6,  'entellus', 'Semnopithecus entellus');
+insert into genre (parent_id, slug, name) VALUES ( 6,  'intermedius', 'Ploceus intermedius');
+insert into genre (parent_id, slug, name) VALUES ( 6,  'africanus', 'Actophilornis africanus');
+insert into genre (parent_id, slug, name) VALUES ( 6,  'mycteria', 'Ephippiorhynchus mycteria');
+insert into genre (parent_id, slug, name) VALUES ( 6,  'rufus', 'Pteropus rufus');
+insert into genre (parent_id, slug, name) VALUES ( 6,  'senegalensis', 'Ephipplorhynchus senegalensis');
+insert into genre (parent_id, slug, name) VALUES ( 6,  'tristis', 'Acridotheres tristis');
+insert into genre (parent_id, slug, name) VALUES ( 6,  'nigricans', 'Pycnonotus nigricans');
+insert into genre (parent_id, slug, name) VALUES ( 6,  'albicollis', 'Corvus albicollis');
+insert into genre (parent_id, slug, name) VALUES ( 6,  'vulpecula', 'Trichosurus vulpecula');
+
+insert into genre (parent_id, slug, name) VALUES ( 7,  'novaehollandiae', 'Larus novaehollandiae');
+insert into genre (parent_id, slug, name) VALUES ( 7,  'cinereus', 'Phascolarctos cinereus');
+insert into genre (parent_id, slug, name) VALUES ( 7,  'oryx', 'Oryx gazella callotis');
+insert into genre (parent_id, slug, name) VALUES ( 7,  'pipetca', 'Pipetca');
+insert into genre (parent_id, slug, name) VALUES ( 7,  'leucocephala', 'Mycteria leucocephala');
+insert into genre (parent_id, slug, name) VALUES ( 7,  'concolor', 'Lorythaixoides concolor');
+insert into genre (parent_id, slug, name) VALUES ( 7,  'longicollis', 'Chelodina longicollis');
+insert into genre (parent_id, slug, name) VALUES ( 7,  'lateralis', 'Spermophilus lateralis');
+insert into genre (parent_id, slug, name) VALUES ( 7,  'vanaticus', 'Speothos vanaticus');
+insert into genre (parent_id, slug, name) VALUES ( 7,  'cokii', 'Alcelaphus buselaphus cokii');
+
+insert into genre (parent_id, slug, name) VALUES ( 8,  'arnee', 'Bubalus arnee');
+insert into genre (parent_id, slug, name) VALUES ( 8,  'armatus', 'Anitibyx armatus');
+insert into genre (parent_id, slug, name) VALUES ( 8,  'gelada', 'Theropithecus gelada');
+insert into genre (parent_id, slug, name) VALUES ( 8,  'nigricans', 'Pycnonotus nigricans');
+insert into genre (parent_id, slug, name) VALUES ( 8,  'graspus', 'Graspus graspus');
+insert into genre (parent_id, slug, name) VALUES ( 8,  'javanicus', 'Herpestes javanicus');
+insert into genre (parent_id, slug, name) VALUES ( 8,  'albifrons', 'Cebus albifrons');
+insert into genre (parent_id, slug, name) VALUES ( 8,  'flavescens', 'Otaria flavescens');
+insert into genre (parent_id, slug, name) VALUES ( 8,  'ferrugineus', 'Laniarius ferrugineus');
+insert into genre (parent_id, slug, name) VALUES ( 8,  'tucanus', 'Ramphastos tucanus');
+
+insert into genre (parent_id, slug, name) VALUES ( 9,  'leadbeateri', 'Bucorvus leadbeateri');
+insert into genre (parent_id, slug, name) VALUES ( 9,  'robustus', 'Macropus robustus');
+insert into genre (parent_id, slug, name) VALUES ( 9,  'truncatus', 'Tursiops truncatus');
+insert into genre (parent_id, slug, name) VALUES ( 9,  'novemcinctus', 'Dasypus novemcinctus');
+insert into genre (parent_id, slug, name) VALUES ( 9,  'delphis', 'Delphinus delphis');
+insert into genre (parent_id, slug, name) VALUES ( 9,  'flaviventris', 'Marmota flaviventris');
+insert into genre (parent_id, slug, name) VALUES ( 9,  'tristis', 'Acridotheres tristis');
+insert into genre (parent_id, slug, name) VALUES ( 9,  'constrictor', 'Coluber constrictor');
+insert into genre (parent_id, slug, name) VALUES ( 9,  'cochlearius', 'Cochlearius cochlearius');
+insert into genre (parent_id, slug, name) VALUES ( 9,  'tenuirostris', 'Cacatua tenuirostris');
+
+insert into genre (parent_id, slug, name) VALUES ( 10,  'strigoides', 'Podargus strigoides');
+insert into genre (parent_id, slug, name) VALUES ( 10,  'cerastes', 'Crotalus cerastes');
+insert into genre (parent_id, slug, name) VALUES ( 10,  'lybica', 'Felis silvestris lybica');
+insert into genre (parent_id, slug, name) VALUES ( 10,  'aureus', 'Canis aureus');
+insert into genre (parent_id, slug, name) VALUES ( 10,  'nubicus', 'Merops nubicus');
+insert into genre (parent_id, slug, name) VALUES ( 10,  'robertsi', 'Kobus leche robertsi');
+insert into genre (parent_id, slug, name) VALUES ( 10,  'rufogriseus', 'Macropus rufogriseus');
+insert into genre (parent_id, slug, name) VALUES ( 10,  'virescens', 'Pseudoleistes virescens');
+insert into genre (parent_id, slug, name) VALUES ( 10,  'leucoscepus', 'Francolinus leucoscepus');
+insert into genre (parent_id, slug, name) VALUES ( 10,  'palumbus', 'Columba palumbus');
