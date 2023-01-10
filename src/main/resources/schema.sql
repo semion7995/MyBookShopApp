@@ -16,6 +16,19 @@ DROP TABLE IF EXISTS book2genre;
 DROP TABLE IF EXISTS users;
 DROP TABLE IF EXISTS user_contact;
 
+DROP TABLE IF EXISTS book2genre;
+DROP TABLE IF EXISTS users;
+DROP TABLE IF EXISTS user_contact;
+DROP TABLE IF EXISTS book2user;
+DROP TABLE IF EXISTS book2user_type;
+DROP TABLE IF EXISTS balance_transaction;
+DROP TABLE IF EXISTS book_file;
+DROP TABLE IF EXISTS book_file_type;
+DROP TABLE IF EXISTS file_download;
+DROP TABLE IF EXISTS document;
+DROP TABLE IF EXISTS faq;
+DROP TABLE IF EXISTS message;
+
 create table book --книга
 (
     id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
@@ -92,7 +105,85 @@ create table users  -- пользователь магазина
 create table user_contact --контакт пользователя
 (
     id INT NOT NULL AUTO_INCREMENT,
-    user_id INT NOT NULL ,                              --идентификатор пользователя, к которому относится данный контакт
-    type_ ENUM('PHONE', 'EMAIL') NOT NULL ,             --тип контакта (телефон или e-mail)
-    approved TINYINT NOT NULL                           --подтверждён ли контакт (0 или 1)
+    user_id INT NOT NULL ,                               -- идентификатор пользователя, к которому относится данный контакт
+    type_ ENUM ('PHONE', 'EMAIL') NOT NULL ,             -- тип контакта (телефон или e-mail)
+    approved TINYINT NOT NULL,                           -- подтверждён ли контакт (0 или 1)
+    code VARCHAR(255),                                   -- код подтверждения
+    code_trials INT ,                                    -- количество попыток ввода кода подтверждения
+    code_time DATETIME,                                  -- дата и время формирования кода подтверждения
+    contact VARCHAR(255) NOT NULL                        -- контакт (e-mail или телефон)
+);
+
+create table book2user ( -- привязки книг к юзерам
+    id INT NOT NULL AUTO_INCREMENT,
+    time_ DATETIME NOT NULL,                              -- дата и время возникновения привязки
+    type_id INT NOT NULL,                                -- тип привязки книги к пользователю
+    book_id INT NOT NULL,                                -- идентификатор книги
+    user_id INT NOT NULL                                -- идентификатор пользователя
+);
+
+create table book2user_type( -- типы привязок книг к юзерам
+    id INT NOT NULL AUTO_INCREMENT,
+    code VARCHAR(255) NOT NULL,                          -- код типа привязки (см. ниже список)
+    name VARCHAR(255) NOT NULL                          -- наименование типа привязки (см. ниже список)
+                                                        -- Отложена — KEPT
+                                                        -- В корзине — CART
+                                                        -- Куплена — PAID
+                                                        -- В архиве — ARCHIVED
+);
+create table balance_transaction( --транзакции по счетам пользователей
+    id INT NOT NULL AUTO_INCREMENT,
+    user_id INT NOT NULL,                                -- идентификатор пользователя
+    time_ DATETIME NOT NULL,                              -- дата и время транзакции
+    value_ INT NOT NULL  DEFAULT 0,                       -- размер транзакции (положительный — зачисление, отрицательный — списание)
+    book_id INT NOT NULL,                                -- книга, за покупку которой произошло списание, или NULL
+    description TEXT NOT NULL                           -- описание транзакции: если зачисление, то откуда, если списание, то на что
+);
+
+create table book_file( -- файлы книг
+    id INT NOT NULL AUTO_INCREMENT,
+    hash VARCHAR(255) NOT NULL,                          -- случайный хэш, предназначенный для идентификации файла при скачивании.
+    type_id INT NOT NULL,                                -- тип файла
+    path_ VARCHAR(255) NOT NULL                          -- путь к файлу
+);
+
+create table book_file_type ( -- типы файлов книг
+    id INT NOT NULL AUTO_INCREMENT,
+    name VARCHAR(255) NOT NULL,
+                                                        --PDF
+                                                        --EPUB
+                                                        --FB2
+    description TEXT                                    -- описание типов файлов
+);
+
+create table file_download ( -- количество скачиваний книги юзером
+    id INT NOT NULL AUTO_INCREMENT,
+    user_id INT NOT NULL,                                -- идентификатор пользователя, скачавшего книгу
+    book_id INT NOT NULL,                                -- идентификатор скачанной книги
+    count INT NOT NULL DEFAULT 1                         -- количество скачиваний
+);
+
+create table document ( -- документы
+    id INT NOT NULL AUTO_INCREMENT,
+    sort_index INT NOT NULL DEFAULT 0,                   -- порядковый номер документа (для вывода на странице списка документов)
+    slug VARCHAR(255) NOT NULL,                          -- мнемонический код документа, отображаемый в ссылке на страницу документа
+    title VARCHAR(255) NOT NULL,                         -- наименование документа
+    text TEXT NOT NULL                                  -- текст документа в формате HTML
+);
+
+create table faq( -- частые вопросы и ответы на них
+    id INT NOT NULL AUTO_INCREMENT,
+    sort_index INT NOT NULL DEFAULT 0,                   -- порядковый номер вопроса в списке вопросов на странице “Помощь”
+    question VARCHAR(255) NOT NULL,                      -- вопрос
+    answer TEXT NOT NULL                                -- ответ в формате HTML
+);
+
+create table message ( -- сообщения в форму обратной связи
+    id INT NOT NULL AUTO_INCREMENT,
+    time_ DATETIME NOT NULL,                              -- дата и время отправки сообщения
+    user_id INT,                                         -- если пользователь был авторизован
+    email VARCHAR(255),                                  -- электронная почта пользователя, если он не был авторизован
+    name VARCHAR(255),                                   -- имя пользователя, если он не был авторизован
+    subject VARCHAR(255) NOT NULL,                       -- тема сообщения
+    text TEXT NOT NULL                                  -- текст сообщения
 );
