@@ -6,6 +6,8 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Service;
 import java.sql.*;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.*;
 
 @Service
@@ -30,41 +32,11 @@ public class BookService {
             @Override
             public Book mapRow(ResultSet rs, int rowNum) throws SQLException {
                 Book book = new Book();
-                book.setId(rs.getInt("id"));
-                book.setPubDate(rs.getString("pub_date"));
-                book.setIsBestseller(rs.getBoolean("is_bestseller"));
-                book.setSlug(rs.getString("slug"));
-                book.setTitle(rs.getString("title"));
-                book.setImage(rs.getString("image_"));
-                book.setDescription(rs.getString("description"));
-                book.setPriceOld(rs.getInt("priceOld"));
-                book.setPrice(rs.getInt("price"));
-                book.setDiscount(rs.getInt("discount"));
+                addBookFields(rs, book);
                 return book;
             }
         });
-        if (!books.isEmpty()) {
-            Integer maxBooksSize = books.size();
-            Map<Integer, List<Integer>> maps = new TreeMap();
-            List<Author> allAuthors = getAllAuthors();
-            for (int j = 1; j < maxBooksSize; j++) {
-                    Book book = books.get(j-1);
-                    List<Integer> listAuthorId = jdbcTemplate.query(SELECT_AUTHORS_ID_AT_BOOK, new RowMapper<Integer>() {
-                        @Override
-                        public Integer mapRow(ResultSet rs, int rowNum) throws SQLException {
-                            return rs.getInt(1);
-                        }
-                    }, j);
-                    List<Author> authorsOneBooks = new ArrayList<>();
-                    for (int k = 0; k < listAuthorId.size(); k++) {
-                        Integer int1 = listAuthorId.get(k)-1;
-                        Author author = allAuthors.get(int1);
-                        authorsOneBooks.add(author);
-                    }
-                    book.setAuthors(authorsOneBooks);
-                    maps.put(j, listAuthorId);
-            }
-        }
+        addAuthorListFieldBook(books);
         return books;
     }
 
@@ -90,24 +62,63 @@ public class BookService {
 
     public List<Book> getBooksNoveltiesList() {
         List<Book> books = new ArrayList<>();
-
-        books = jdbcTemplate.query("", new RowMapper<Book>() {
+        LocalDate sortNewBookDate = LocalDate.of(2022, 4, 1);
+        String sortData = sortNewBookDate.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+        books = jdbcTemplate.query("SELECT * FROM BOOK where book.pub_date > ?", new RowMapper<Book>() {
             @Override
             public Book mapRow(ResultSet rs, int rowNum) throws SQLException {
                 Book book = new Book();
-
-
+                addBookFields(rs, book);
                 return book;
             }
-        });
 
+           
+        }, sortData);
+
+        addAuthorListFieldBook(books);
+        
         return books;
     }
     public List<Book> getBooksPopularList() {
        return new ArrayList<>();
     }
-    public int addBook(int id){
-     return 0;
+    private void addBookFields(ResultSet rs, Book book) throws SQLException {
+        book.setId(rs.getInt("id"));
+        book.setPubDate(rs.getString("pub_date"));
+        book.setIsBestseller(rs.getBoolean("is_bestseller"));
+        book.setSlug(rs.getString("slug"));
+        book.setTitle(rs.getString("title"));
+        book.setImage(rs.getString("image_"));
+        book.setDescription(rs.getString("description"));
+        book.setPriceOld(rs.getInt("priceOld"));
+        book.setPrice(rs.getInt("price"));
+        book.setDiscount(rs.getInt("discount"));
     }
 
+    private void addAuthorListFieldBook(List<Book> books) {
+        if (!books.isEmpty()) {
+            Integer maxBooksSize = books.size();
+            Map<Integer, List<Integer>> maps = new TreeMap();
+            List<Author> allAuthors = getAllAuthors();
+            for (int j = 1; j < maxBooksSize; j++) {
+                Book book = books.get(j-1);
+                List<Integer> listAuthorId = jdbcTemplate.query(SELECT_AUTHORS_ID_AT_BOOK, new RowMapper<Integer>() {
+                    @Override
+                    public Integer mapRow(ResultSet rs, int rowNum) throws SQLException {
+                        return rs.getInt(1);
+                    }
+                }, j);
+                List<Author> authorsOneBooks = new ArrayList<>();
+                for (int k = 0; k < listAuthorId.size(); k++) {
+                    Integer int1 = listAuthorId.get(k)-1;
+                    Author author = allAuthors.get(int1);
+                    authorsOneBooks.add(author);
+                }
+                book.setAuthors(authorsOneBooks);
+                maps.put(j, listAuthorId);
+            }
+        }
+    }
+
+    
 }
