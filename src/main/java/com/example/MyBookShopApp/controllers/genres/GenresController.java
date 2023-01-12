@@ -1,5 +1,6 @@
 package com.example.MyBookShopApp.controllers.genres;
 
+import com.example.MyBookShopApp.data.Genre;
 import com.example.MyBookShopApp.service.genres.GenresService;
 import com.example.MyBookShopApp.service.genres.TagGenresSlugService;
 import com.example.MyBookShopApp.util.DatePlasecholder;
@@ -10,7 +11,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import javax.swing.border.EmptyBorder;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
@@ -37,6 +37,11 @@ public class GenresController {
         return "searchbar.placeholder2";
     }
 
+
+    @ModelAttribute("getGenresMap")
+    public Map<Genre, List<Genre>> getMainGenresList(){
+        return genresService.getGenresMap();
+    }
 
     @GetMapping
     public String genresPage(Model model){

@@ -49,14 +49,15 @@ p.error-browser
             <div class="Section">
                 <div class="Tags Tags_genres">
                     <div class="Tags Tags_embed">
-                        <div th:each="tagHeader : ${getFilledHeaderTagGenresPage}">
-                            <div class="Tags-title"><a th:href="@{genres/slug(tagType='headerTag',id=${tagHeader.idTagHeaderGenresPage}, headerName=${tagHeader.tagHeaderNameGenresPage})}"
-                                                       th:text="${tagHeader.tagHeaderNameGenresPage} + '(' + ${tagHeader.tagHeaderCountBooks} + ')'"></a>
+                        <div th:each="genres : ${getGenresMap}">
+                            <div class="Tags-title" >
+                                <a th:href="@{genres/slug(tagType='headerTag',id=${genres.getKey().getId()}, headerName=${genres.getKey().getName()})}"
+                                  th:text="${genres.getKey().getName()} + '(' + ${'10'} + ')'"></a>
                             </div>
                             <ul>
-                                <div class="Tag" th:each="emptyTag : ${tagHeader.emptyTags}">
-                                    <a th:text="${emptyTag.emptyTagName} + '(' + ${emptyTag.countBooks} +  ')'"
-                                       th:href="@{genres/slug(tagType='emptyTag',id=${emptyTag.idEmptyTagGenresPage}, headerName=${tagHeader.tagHeaderNameGenresPage}, lang='en')}"></a>
+                                <div class="Tag" th:each="subgroupGenres : ${genres.getValue()}" >
+                                    <a th:text="${subgroupGenres.getName()} + '(' + ${'20'} +  ')'"
+                                       th:href="@{genres/slug(tagType='emptyTag',id=${subgroupGenres.getId()}, headerName=${subgroupGenres.getName()}, lang='en')}"></a>
                                 </div>
                             </ul>
                         </div>
