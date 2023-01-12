@@ -4,6 +4,7 @@ DROP TABLE IF EXISTS books;
 DROP TABLE IF EXISTS tags_main_page;
 DROP TABLE IF EXISTS tags;
 DROP TABLE IF EXISTS tags_genres_page;
+DROP TABLE IF EXISTS tags_;
 
 
 DROP TABLE IF EXISTS book;
@@ -186,6 +187,11 @@ create table message ( -- сообщения в форму обратной св
     name VARCHAR(255),                                   -- имя пользователя, если он не был авторизован
     subject VARCHAR(255) NOT NULL,                       -- тема сообщения
     text TEXT NOT NULL                                  -- текст сообщения
+);
+
+create table tags_ (
+  id INT NOT NULL AUTO_INCREMENT,
+  name_ VARCHAR(255)
 );
 
 

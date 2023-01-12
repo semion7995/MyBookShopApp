@@ -79,8 +79,24 @@ public class BookService {
         
         return books;
     }
+    /*
+    SELECT * FROM BOOK where book.is_bestseller > ?
+     */
     public List<Book> getBooksPopularList() {
-       return new ArrayList<>();
+        List<Book> books = new ArrayList<>();
+
+        books = jdbcTemplate.query("SELECT * FROM BOOK where book.is_bestseller > ?", new RowMapper<Book>() {
+            @Override
+            public Book mapRow(ResultSet rs, int rowNum) throws SQLException {
+                Book book = new Book();
+                addBookFields(rs, book);
+                return book;
+            }
+        }, 55);
+
+        addAuthorListFieldBook(books);
+
+       return books;
     }
     private void addBookFields(ResultSet rs, Book book) throws SQLException {
         book.setId(rs.getInt("id"));

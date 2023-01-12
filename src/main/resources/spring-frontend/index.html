@@ -141,12 +141,12 @@ p.error-browser
                                         <strong class="Card-title"><a th:href="@{books/slug}"
                                                                       th:text="${bookPopular.title}">Техника</a>
                                         </strong>
-                                        <div class="Card-description" th:text="${bookPopular.author}">Кондратенко
+                                        <div class="Card-description" th:each="author : ${bookPopular.getAuthors()}" th:text="${author.name}">Кондратенко
                                             Александр Петрович
                                         </div>
                                         <div class="Card-cost"><span class="Card-priceOld"
                                                                      th:text="${bookPopular.priceOld}">₽500.00</span><span
-                                                class="Card-price" th:text="${bookPopular.price}">₽390.00</span>
+                                                class="Card-price" th:text="${bookPopular.price + ' $'}">₽390.00</span>
                                         </div>
                                     </div>
                                 </div>
@@ -168,7 +168,7 @@ p.error-browser
             </h2>
             <div class="Tags" id="tagMainPages">
                 <div align="justify" class="Tag"><a th:href="@{tags}" th:each="tagMainPage : ${getTagsList}"
-                                                    th:text="${'#' + tagMainPage.tagNameMainPage + ' '}">зарубежная
+                                                    th:text="${'#' + tagMainPage.getTag() + ' '}">зарубежная
                     литература</a>
                 </div>
             </div>
