@@ -187,3 +187,23 @@ create table message ( -- сообщения в форму обратной св
     subject VARCHAR(255) NOT NULL,                       -- тема сообщения
     text TEXT NOT NULL                                  -- текст сообщения
 );
+
+
+-- select so.* , ro.r_office_area_id, ro.r_office_name, po_h.p_office_area_id as h_p_office_area_id,
+--        po_h.p_office_name as h_p_office_name,
+--        po_w.p_office_area_id as w_p_office_area_id,
+--        po_w.p_office_name as w_p_office_name from
+--     jc_student_order so
+--         inner join jc_register_office ro on
+--             ro.r_office_id = so.register_office_id
+--         inner join jc_passport_office po_h on po_h.p_office_id = so.h_passport_office_id
+--         inner join jc_passport_office po_w on po_w.p_office_id = so.w_passport_office_id
+-- where student_order_status = ? order by student_order_date LIMIT ?;
+--
+--
+-- select * from book b
+--                   left join book2author b2a on b2a.book_id = b.id
+--
+--
+-- select b2a.author_id from book b
+--                               left join book2author b2a on b2a.book_id = b.id where b.id=1
