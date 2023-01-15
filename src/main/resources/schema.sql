@@ -213,3 +213,6 @@ create table tags_ (
 --
 -- select b2a.author_id from book b
 --                               left join book2author b2a on b2a.book_id = b.id where b.id=1
+
+-- SELECT * FROM GENRE g
+-- left join book2genre b2g on b2g.genre_id = g.id where g.parent_id is not null

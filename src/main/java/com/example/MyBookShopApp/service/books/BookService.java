@@ -92,7 +92,7 @@ public class BookService {
                 addBookFields(rs, book);
                 return book;
             }
-        }, 55);
+        }, 0);
 
         addAuthorListFieldBook(books);
 
@@ -126,7 +126,10 @@ public class BookService {
                 }, j);
                 List<Author> authorsOneBooks = new ArrayList<>();
                 for (int k = 0; k < listAuthorId.size(); k++) {
-                    Integer int1 = listAuthorId.get(k)-1;
+                    Integer int1 = 0;
+                    if (k>0) {
+                     int1 = listAuthorId.get(k)-1;
+                    }
                     Author author = allAuthors.get(int1);
                     authorsOneBooks.add(author);
                 }

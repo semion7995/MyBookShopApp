@@ -21,12 +21,14 @@ public class GenresService {
 
 
     /*
-    get Maps main Genres and list subgroup genres
+    get Maps for key-> main Genres and values -> list subgroup genres
      */
     public Map<Genre, List<Genre>> getGenresMap() {
 
         Map<Genre, List<Genre>> genresMap = new HashMap<>();
         List<Genre> mainGenres = new ArrayList<>();
+
+        //get main genres List - start
         mainGenres = jdbcTemplate.query("SELECT * FROM GENRE where genre.parent_id is null", new RowMapper<Genre>() {
             @Override
             public Genre mapRow(ResultSet rs, int rowNum) throws SQLException {
@@ -38,11 +40,15 @@ public class GenresService {
                 return genre;
             }
         });
+        //get main genres List - finish
+
         List<Genre> secondaryGenres = new ArrayList<>();
 
         Set<Integer> sets = new TreeSet<>();
 
         Map<Integer, List<Genre>> genresByAuthorsIdContainer = new TreeMap<>();
+
+        // get secondary genres list - start
         secondaryGenres = jdbcTemplate.query("SELECT * FROM GENRE where genre.parent_id is not null", new RowMapper<Genre>() {
             @Override
             public Genre mapRow(ResultSet rs, int rowNum) throws SQLException {
@@ -55,7 +61,36 @@ public class GenresService {
                 return genre;
             }
         });
+        // get secondary genres list - finish
 
+
+        Map<Integer, List<Integer>> secondaryBookLinks = new HashMap<>(); // key - genres_id, values List<BookId>
+
+        List<Integer> countSecondaryGenres = new ArrayList<>();
+
+        int genreId = 0;
+
+
+        //get map key -> genreId, values -> List<BookID> - start
+        for (int i = 0; i < secondaryGenres.size(); i++) {
+            genreId++;
+            countSecondaryGenres = jdbcTemplate.query("SELECT * FROM book2genre WHERE book2genre.genre_id = ?", new RowMapper<Integer>() {
+                @Override
+                public Integer mapRow(ResultSet rs, int rowNum) throws SQLException {
+                    Integer bookId = 0;
+                    bookId = rs.getInt("book_id");
+                    return bookId;
+                }
+            }, genreId);
+            secondaryBookLinks.put(genreId, countSecondaryGenres);
+        }
+        //get map key -> genreId, values -> List<BookID> - finish
+
+
+        int test = 0;
+
+
+        // fill map key: MainGenres -> values: List <SecondaryGenres> - start
         for (int i = 0; i < mainGenres.size(); i++) {
             Genre mainGenre = mainGenres.get(i);
             Integer id = mainGenres.get(i).getId();
@@ -63,13 +98,13 @@ public class GenresService {
             for (int j = 0; j < secondaryGenres.size(); j++) {
                 Genre elementSubGroupGenre = secondaryGenres.get(j);
                 Integer parentId = elementSubGroupGenre.getParentId();
-                if (id == parentId){
+                if (id == parentId) {
                     subGroupGenres.add(elementSubGroupGenre);
                 }
             }
             genresMap.put(mainGenre, subGroupGenres);
         }
+        // fill map key: MainGenres -> values: List <SecondaryGenres> - finish
         return genresMap;
     }
-
 }

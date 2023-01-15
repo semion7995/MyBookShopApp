@@ -43,6 +43,8 @@ public class GenresController {
         return genresService.getGenresMap();
     }
 
+
+
     @GetMapping
     public String genresPage(Model model){
         return "genres/index";
