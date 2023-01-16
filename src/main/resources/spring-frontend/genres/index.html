@@ -52,11 +52,11 @@ p.error-browser
                         <div th:each="genres : ${getGenresMap}">
                             <div class="Tags-title" >
                                 <a th:href="@{genres/slug(tagType='headerTag',id=${genres.getKey().getId()}, headerName=${genres.getKey().getName()})}"
-                                  th:text="${genres.getKey().getName()} + '(' + ${genres.getValue().size()} + ')'"></a>
+                                  th:text="${genres.getKey().getName()} + ' (' + ${genres.getKey().getCountBookThisGenre()} + ')'"></a>
                             </div>
                             <ul>
                                 <div class="Tag" th:each="subgroupGenres : ${genres.getValue()}" >
-                                    <a th:text="${subgroupGenres.getName()} + '(' + ${'20'} +  ')'"
+                                    <a th:text="${subgroupGenres.getName()} + ' (' + ${subgroupGenres.getCountBookThisGenre()} +  ')'"
                                        th:href="@{genres/slug(tagType='emptyTag',id=${subgroupGenres.getId()}, headerName=${subgroupGenres.getName()}, lang='en')}"></a>
                                 </div>
                             </ul>

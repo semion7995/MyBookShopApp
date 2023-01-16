@@ -7,4 +7,7 @@ public class Genre {
     private Integer parentId;
     private String slug;
     private String name;
+
+
+    private Integer countBookThisGenre;
 }
