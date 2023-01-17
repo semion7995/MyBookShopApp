@@ -73,7 +73,8 @@
           </div>
           <div class="Cards Cards_refresh">
             <div class="Card" th:each="bookNew :${getBooksNoveltiesList}">
-              <div class="Card-picture"><a href="#"><img src="/assets/img/content/main/card.jpg" alt="card.jpg"/></a>
+<!--              src="/assets/img/content/main/card.jpg"-->
+              <div class="Card-picture"><a href="#"><img th:src="${bookNew.getImage()}" alt="card.jpg"/></a>
               </div>
               <div class="Card-content" >
                 <strong class="Card-title" th:text="${bookNew.getTitle()}"><a href="#">Техника</a>

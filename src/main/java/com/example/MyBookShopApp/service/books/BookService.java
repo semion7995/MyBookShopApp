@@ -13,8 +13,6 @@ import java.util.*;
 @Service
 public class BookService {
     private static final String SELECT_AUTHORS_ID_AT_BOOK = "select b2a.author_id from book b left join book2author b2a on b2a.book_id = b.id where b.id=?";
-    private static final String SELECT_AUTHORS_ID_AT_BOOK2 = "select * from book b left join book2author b2a on b2a.book_id = b.id";
-    private static Integer bookSize = 0;
     private JdbcTemplate jdbcTemplate;
     @Autowired
     public BookService(JdbcTemplate jdbcTemplate) {
@@ -28,7 +26,7 @@ public class BookService {
     public List<Book> getBooksRecommendedList() {
         List<Book> books = new ArrayList<>();
 
-        books = jdbcTemplate.query("SELECT * FROM BOOK", new RowMapper<Book>() {
+        books = jdbcTemplate.query("SELECT * FROM BOOK B WHERE B.pub_date < '2022-04-1' AND b.is_bestseller = 0", new RowMapper<Book>() {
             @Override
             public Book mapRow(ResultSet rs, int rowNum) throws SQLException {
                 Book book = new Book();
@@ -38,25 +36,6 @@ public class BookService {
         });
         addAuthorListFieldBook(books);
         return books;
-    }
-
-    private List<Author> getAllAuthors () {
-        List<Author> authors = new ArrayList<>();
-        authors = jdbcTemplate.query("SELECT * FROM AUTHOR", new RowMapper<Author>() {
-
-            @Override
-            public Author mapRow(ResultSet rs, int rowNum) throws SQLException {
-                Author author = new Author();
-                author.setId(rs.getInt("id"));
-                author.setPhoto(rs.getString("photo"));
-                author.setSlug(rs.getString("slug"));
-                author.setName(rs.getString("name"));
-                author.setDescription(rs.getString("description"));
-                return author;
-            }
-        });
-        int i = 10;
-        return authors;
     }
 
 
@@ -72,14 +51,15 @@ public class BookService {
                 return book;
             }
 
-           
+
         }, sortData);
 
         addAuthorListFieldBook(books);
         int o = 0;
-        
+
         return books;
     }
+
     /*
     SELECT * FROM BOOK where book.is_bestseller > ?
      */
@@ -98,6 +78,30 @@ public class BookService {
         addAuthorListFieldBook(books);
 
        return books;
+    }
+
+
+    /*
+    auxiliary functions
+     */
+
+    private List<Author> getAllAuthors () {
+        List<Author> authors = new ArrayList<>();
+        authors = jdbcTemplate.query("SELECT * FROM AUTHOR", new RowMapper<Author>() {
+
+            @Override
+            public Author mapRow(ResultSet rs, int rowNum) throws SQLException {
+                Author author = new Author();
+                author.setId(rs.getInt("id"));
+                author.setPhoto(rs.getString("photo"));
+                author.setSlug(rs.getString("slug"));
+                author.setName(rs.getString("name"));
+                author.setDescription(rs.getString("description"));
+                return author;
+            }
+        });
+        int i = 10;
+        return authors;
     }
     private void addBookFields(ResultSet rs, Book book) throws SQLException {
         book.setId(rs.getInt("id"));
@@ -128,25 +132,11 @@ public class BookService {
                 List<Author> authorsOneBooks = new ArrayList<>();
 
                 List<Author> authorById = getAuthorById(listAuthorId);
-                int o = 0;
 
                 book.setAuthors(authorById);
-//                maps.put(j, listAuthorId)
 
-//                for (Integer authorId : listAuthorId) {
-//                    book.setAuthors();
-//                }
 
-//                for (int k = 0; k < listAuthorId.size(); k++) {
-//                    Integer int1 = 0;
-//                    if (k>0) {
-//                     int1 = listAuthorId.get(k);
-//                    }
-//                    Author author = allAuthors.get(int1);
-//                    authorsOneBooks.add(author);
-//                }
-//                book.setAuthors(authorsOneBooks);
-//                maps.put(j, listAuthorId);
+
             }
         }
     }

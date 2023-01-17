@@ -1,18 +1,18 @@
 <div class="Cards" th:fragment="pool">
-    <div class="Card" th:each="book: ${booksList}">
+    <div class="Card" th:each="book: ${getBooksPopularList}">
         <div class="Card-picture">
             <a href="#a" th:href="${book.id}">
-                <img src="/assets/img/content/main/card.jpg" alt="card.jpg"/>
+                <img th:src="${book.getImage()}" src="/assets/img/content/main/card.jpg" alt="card.jpg"/>
             </a>
         </div>
         <div class="Card-content">
             <strong class="Card-title">
-                <a href="#" th:text="${book.title}"></a>
+                <a href="#" th:text="${book.getTitle()}"></a>
             </strong>
-            <div class="Card-description" th:text="${book.author}"></div>
+            <div class="Card-description" th:each="author: ${book.getAuthors()}" th:text="${author.getName()}"></div>
             <div class="Card-cost">
-                <span class="Card-priceOld">₽300.00</span>
-                <span class="Card-price">₽190.00</span>
+                <span class="Card-priceOld" th:text="${book.getPriceOld()}">₽300.00</span>
+                <span class="Card-price" th:text="${book.getPrice()}">₽190.00</span>
             </div>
         </div>
     </div>
