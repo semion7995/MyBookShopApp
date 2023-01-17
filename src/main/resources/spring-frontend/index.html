@@ -93,7 +93,7 @@ p.error-browser
                             <div class="Slider-content">
                                 <div class="Card"><a class="Card-picture" th:href="@{books/slug}"><img
                                         src="/assets/img/content/main/card.jpg" alt="card.jpg"/>
-                                    <div class="Card-sale">30% скидка
+                                    <div class="Card-sale" th:text="${'скидка '+ bookNew.getDiscount() + ' %'}">30% скидка
                                     </div>
                                 </a>
                                     <div class="Card-content">
@@ -132,7 +132,7 @@ p.error-browser
                             <div class="Slider-content">
                                 <div class="Card"><a class="Card-picture" th:href="@{books/slug}"><img
                                         src="/assets/img/content/main/card.jpg" alt="card.jpg"/>
-                                    <div class="Card-sale">30% скидка
+                                    <div class="Card-sale" th:text="${'скидка ' + bookPopular.getDiscount() + ' %'}">30% скидка
                                     </div>
                                     <div class="Card-ribbon"><span class="Card-ribbonText">Бестселлер</span>
                                     </div>

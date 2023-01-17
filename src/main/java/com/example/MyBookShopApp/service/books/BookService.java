@@ -76,6 +76,7 @@ public class BookService {
         }, sortData);
 
         addAuthorListFieldBook(books);
+        int o = 0;
         
         return books;
     }
@@ -114,7 +115,7 @@ public class BookService {
     private void addAuthorListFieldBook(List<Book> books) {
         if (!books.isEmpty()) {
             Integer maxBooksSize = books.size();
-            Map<Integer, List<Integer>> maps = new TreeMap();
+//            Map<Integer, List<Integer>> maps = new TreeMap();
             List<Author> allAuthors = getAllAuthors();
             for (int j = 1; j < maxBooksSize; j++) {
                 Book book = books.get(j-1);
@@ -125,18 +126,52 @@ public class BookService {
                     }
                 }, j);
                 List<Author> authorsOneBooks = new ArrayList<>();
-                for (int k = 0; k < listAuthorId.size(); k++) {
-                    Integer int1 = 0;
-                    if (k>0) {
-                     int1 = listAuthorId.get(k)-1;
-                    }
-                    Author author = allAuthors.get(int1);
-                    authorsOneBooks.add(author);
-                }
-                book.setAuthors(authorsOneBooks);
-                maps.put(j, listAuthorId);
+
+                List<Author> authorById = getAuthorById(listAuthorId);
+                int o = 0;
+
+                book.setAuthors(authorById);
+//                maps.put(j, listAuthorId)
+
+//                for (Integer authorId : listAuthorId) {
+//                    book.setAuthors();
+//                }
+
+//                for (int k = 0; k < listAuthorId.size(); k++) {
+//                    Integer int1 = 0;
+//                    if (k>0) {
+//                     int1 = listAuthorId.get(k);
+//                    }
+//                    Author author = allAuthors.get(int1);
+//                    authorsOneBooks.add(author);
+//                }
+//                book.setAuthors(authorsOneBooks);
+//                maps.put(j, listAuthorId);
             }
         }
+    }
+
+    private List<Author> getAuthorById (List<Integer> authorsIdsList){
+        List<Author> authorsByIdListResult = new ArrayList<>();
+
+        for (Integer authorId : authorsIdsList) {
+            List<Author> query = jdbcTemplate.query("SELECT * FROM AUTHOR A WHERE A.ID = ?", new RowMapper<Author>() {
+                @Override
+                public Author mapRow(ResultSet rs, int rowNum) throws SQLException {
+                    Author author = new Author();
+                    author.setId(rs.getInt("id"));
+                    author.setPhoto(rs.getString("photo"));
+                    author.setSlug(rs.getString("slug"));
+                    author.setName(rs.getString("name"));
+                    author.setDescription(rs.getString("description"));
+                    return author;
+                }
+            }, authorId);
+            authorsByIdListResult.add(query.get(0));
+        }
+
+
+        return authorsByIdListResult;
     }
 
     

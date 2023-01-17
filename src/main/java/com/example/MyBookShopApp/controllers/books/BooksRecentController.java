@@ -1,5 +1,6 @@
 package com.example.MyBookShopApp.controllers.books;
 
+import com.example.MyBookShopApp.data.Book;
 import com.example.MyBookShopApp.service.books.BookService;
 import com.example.MyBookShopApp.util.DatePlasecholder;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,6 +31,12 @@ public class BooksRecentController {
     @ModelAttribute("messageTemplate")
     public String getMessageTemplate(){
         return "searchbar.placeholder2";
+    }
+
+
+    @ModelAttribute("getBooksNoveltiesList")
+    public List<Book> getNewBookList (){
+        return bookService.getBooksNoveltiesList();
     }
 
 
