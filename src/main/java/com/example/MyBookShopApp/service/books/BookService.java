@@ -35,6 +35,8 @@ public class BookService {
             }
         });
         addAuthorListFieldBook(books);
+
+
         return books;
     }
 
@@ -76,6 +78,7 @@ public class BookService {
         }, 0);
 
         addAuthorListFieldBook(books);
+
 
        return books;
     }

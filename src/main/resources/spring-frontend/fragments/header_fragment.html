@@ -36,7 +36,7 @@
                     </div>
                     <div class="Header-search">
                         <div class="search">
-                            <form class="form form_search" action="#" method="post" data-searchlimit="20">
+                            <form class="form form_search" th:action="@{/search}" action="#" method="post" data-searchlimit="20">
                                 <input class="search-input" id="query" name="query" type="text"
                                        th:placeholder="#{${messageTemplate}(${getServerTime}, #{searchbar.placeholderTextPart1}, #{searchbar.placeholderTextPart2})}"/>
                                 <button class="search-button" type="submit" name="search" id="search">Поиск
