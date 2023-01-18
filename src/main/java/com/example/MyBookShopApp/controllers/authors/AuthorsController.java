@@ -1,5 +1,6 @@
 package com.example.MyBookShopApp.controllers.authors;
 
+import com.example.MyBookShopApp.data.Author;
 import com.example.MyBookShopApp.service.authors.AuthorsService;
 import com.example.MyBookShopApp.util.DatePlasecholder;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,6 +34,12 @@ public class AuthorsController {
     @ModelAttribute("messageTemplate")
     public String getMessageTemplate(){
         return "searchbar.placeholder2";
+    }
+
+
+    @ModelAttribute("getAuthorsMap")
+    public Map<String, List<Author>> getAuthorsMap () {
+        return authorsService.getAuthorsMap();
     }
 
     @GetMapping
