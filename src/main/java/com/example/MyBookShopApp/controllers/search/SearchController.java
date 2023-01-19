@@ -4,7 +4,6 @@ import com.example.MyBookShopApp.service.search.SearchService;
 import com.example.MyBookShopApp.util.DatePlasecholder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -54,7 +53,7 @@ public class SearchController {
 
     @GetMapping("/**")
     public String searchPage(HttpServletRequest request, ModelMap modelMap){
-        List<Book> bookList = searchService.getStringRequestSearch(request);
+        List<Book> bookList = searchService.getListBookByRequestSearch(request);
 
         Map<String, List<Book>> map = new HashMap<>();
         map.put("getBookList", bookList);

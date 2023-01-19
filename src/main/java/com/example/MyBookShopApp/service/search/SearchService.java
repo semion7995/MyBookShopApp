@@ -30,7 +30,7 @@ public class SearchService {
         return bookList;
     }
 
-    public List<Book> getStringRequestSearch(HttpServletRequest request) {
+    public List<Book> getListBookByRequestSearch(HttpServletRequest request) {
 
         String requestSearch = getRequestSearch(request);
         List<Book> listFullFillBook = new ArrayList<>();
@@ -58,14 +58,7 @@ public class SearchService {
                     book = bookListBySearchRequest.get(i);
 
                     List<Author> authorsListByThisBook = new ArrayList<>();
-                    authorsListByThisBook = jdbcTemplate.query("select * from author a left join book2author b2a on b2a.author_id = a.id WHERE a.id = ?", new RowMapper<Author>() {
-                        @Override
-                        public Author mapRow(ResultSet rs, int rowNum) throws SQLException {
-                            Author author = new Author();
-                            fillAuthorFields(rs, author);
-                            return author;
-                        }
-                    }, book.getId());
+                    authorsListByThisBook = getListAuthorsByThisBook(book);
                     book.setAuthors(authorsListByThisBook);
                     listFullFillBook.add(book);
                 }
@@ -97,14 +90,7 @@ public class SearchService {
 
                     Book book = new Book();
                     book = bookListValue.get(i);
-                    authors = jdbcTemplate.query("", new RowMapper<Author>() {
-                        @Override
-                        public Author mapRow(ResultSet rs, int rowNum) throws SQLException {
-                            Author author = new Author();
-                            fillAuthorFields(rs,author);
-                            return author;
-                        }
-                    });
+                    authors = getListAuthorsByThisBook(book);
                     book.setAuthors(authors);
                     bookListIfSearchIsTagAuthor.add(book);
                 }
@@ -114,6 +100,8 @@ public class SearchService {
 
         return listFullFillBook;
     }
+
+
 
     private List<Book> getBookListBySearchQuery() {
 
@@ -193,8 +181,19 @@ public class SearchService {
         String requestSearch = "";
 
         for (int i = 1; i < split.length; i++) {
-            String s = split[i].replace('%', ' ');
-            requestsElements.add(s);
+            String strElement = split[i];
+
+            String replace = "";
+
+            if (strElement.contains("%20")){
+                replace = strElement.replace("%20", " ");
+
+            }
+            else if (strElement.contains("%")){
+                replace = strElement.replace("%", " ");
+            }
+
+            requestsElements.add(replace);
         }
 
         if (requestsElements.size() > 1) {
@@ -206,4 +205,18 @@ public class SearchService {
         }
         return requestSearch;
     }
+
+    private List<Author> getListAuthorsByThisBook(Book book) {
+        List<Author> authorsListByThisBook;
+        authorsListByThisBook = jdbcTemplate.query("select * from author a left join book2author b2a on b2a.author_id = a.id WHERE b2a.book_id = ?", new RowMapper<Author>() {
+            @Override
+            public Author mapRow(ResultSet rs, int rowNum) throws SQLException {
+                Author author = new Author();
+                fillAuthorFields(rs, author);
+                return author;
+            }
+        }, book.getId());
+        return authorsListByThisBook;
+    }
+
 }
