@@ -10,10 +10,7 @@ import org.springframework.stereotype.Service;
 import javax.servlet.http.HttpServletRequest;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @Service
 public class SearchService {
@@ -80,7 +77,7 @@ public class SearchService {
         }
 
         List<Book> bookListIfSearchIsTagAuthor = new ArrayList<>();
-        if (!mapKeyAuthorValuesListBook.isEmpty()){
+        if (!mapKeyAuthorValuesListBook.isEmpty()) {
 
             for (Map.Entry<Author, List<Book>> authorListEntry : mapKeyAuthorValuesListBook.entrySet()) {
                 Author authorKey = authorListEntry.getKey();
@@ -100,7 +97,6 @@ public class SearchService {
 
         return listFullFillBook;
     }
-
 
 
     private List<Book> getBookListBySearchQuery() {
@@ -174,35 +170,27 @@ public class SearchService {
     private String getRequestSearch(HttpServletRequest request) {
         String requestURI = request.getRequestURI();
         String[] split = requestURI.split("/");
+        List<String> containerRequest = Arrays.asList(split);
         List<String> requestsElements = new ArrayList<>();
-
         Boolean requestUserBoolean = false;
-
         String requestSearch = "";
 
-        for (int i = 1; i < split.length; i++) {
-            String strElement = split[i];
+        String searchUser = "";
+        searchUser = containerRequest.get(containerRequest.size() - 1);
 
-            String replace = "";
+        if (searchUser.equals("search")){
+        requestSearch = "";
+        }
+        else if (searchUser.contains("%20")) {
+            requestSearch = searchUser.replace("%20", " ");
 
-            if (strElement.contains("%20")){
-                replace = strElement.replace("%20", " ");
-
-            }
-            else if (strElement.contains("%")){
-                replace = strElement.replace("%", " ");
-            }
-
-            requestsElements.add(replace);
+        } else if (searchUser.contains("%")) {
+            requestSearch = searchUser.replace("%", " ");
+        }
+        else {
+            requestSearch = searchUser;
         }
 
-        if (requestsElements.size() > 1) {
-            requestUserBoolean = true;
-        }
-
-        if (requestUserBoolean) {
-            requestSearch = requestsElements.get(requestsElements.size() - 1);
-        }
         return requestSearch;
     }
 
