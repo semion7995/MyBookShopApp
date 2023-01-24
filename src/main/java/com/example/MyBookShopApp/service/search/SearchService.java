@@ -1,12 +1,10 @@
 package com.example.MyBookShopApp.service.search;
-
 import com.example.MyBookShopApp.data.Author;
 import com.example.MyBookShopApp.data.Book;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Service;
-
 import javax.servlet.http.HttpServletRequest;
 import java.sql.ResultSet;
 import java.sql.SQLException;

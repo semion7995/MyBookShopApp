@@ -81,7 +81,7 @@
                 </strong>
                   <div class="Card-description" th:each="author : ${bookNew.getAuthors()}" th:text="${author.getName()}">Кондратенко Александр Петрович
                 </div>
-                <div class="Card-cost"><span class="Card-priceOld">₽300.00</span><span class="Card-price">₽190.00</span>
+                <div class="Card-cost"><span class="Card-priceOld" th:text="${bookNew.getPriceOld()}">₽300.00</span><span class="Card-price" th:text="${bookNew.getPrice() + ' $'}">₽190.00</span>
                 </div>
               </div>
             </div>
