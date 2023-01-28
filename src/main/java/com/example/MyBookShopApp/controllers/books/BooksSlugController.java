@@ -1,13 +1,13 @@
 package com.example.MyBookShopApp.controllers.books;
 
+import com.example.MyBookShopApp.data.Book;
 import com.example.MyBookShopApp.service.books.BookService;
 import com.example.MyBookShopApp.util.DatePlasecholder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
+import javax.websocket.server.PathParam;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
@@ -33,8 +33,16 @@ public class BooksSlugController {
     }
 
 
+
+    @ModelAttribute("getFindBookById")
+    public Book getFindBookById(@RequestParam Long  id){
+        Book book = bookService.findBookById(id);
+        return book;
+    }
+
     @GetMapping
     public String bookSlugController(){
+
         return "/books/slug";
     }
 }

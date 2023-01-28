@@ -31,7 +31,14 @@
     <!--[if lt IE 9]>
     <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
     <script defer src="/assets/js/scripts.min.js?v=64223515"></script>
-
+    <script lang="JavaScript" type="text/javascript">
+        function sendBookInfoSlugPage(){
+            document.location = document.location + "books/slug" + "?" + "image_=" +  document.getElementById("image_").src.split(document.location.host)[1] + "&title=" + document.getElementById("title").text +
+                "&author_=" + document.getElementById("author_").text + "&price_old=" + document.getElementById("price_old").text + "&price=" +  document.getElementById("price").text
+            ;
+            var b = 0;
+        }
+    </script>
 </head>
 <body class="Site">
 <!--if lt IE 8
@@ -45,11 +52,7 @@ p.error-browser
 -->
 <header th:replace="~{fragments/header_fragment :: headFragment ('menu-item menu-item_ACTIVE','menu-item','menu-item','menu-item','menu-item')}"/>
 
-<script lang="JavaScript" type="text/javascript">
-    function sendBookInfoSlugPage(){
-        // document.location = document.location +
-    }
-</script>
+
 
 <div class="Middle">
     <div class="wrap">
@@ -65,16 +68,17 @@ p.error-browser
                             <!--                th:each="book : ${getRecommendedBooks}"-->
                             <div class="Slider-content">
                                 <div class="Card"><a class="Card-picture" th:href="@{/books/slug}">
-                                    <img th:src="${book.getImage()}" alt="card.jpg"/></a>
+                                    <img id="image_" th:src="${book.getImage()}" alt="card.jpg"/></a>
                                     <div class="Card-content">
-                                        <strong class="Card-title"><a th:href="@{/books/slug}" th:text="${book.title}">Техника</a>
+<!--                                        th:href="@{/books/slug}"-->
+                                        <strong  class="Card-title" ><a  th:href="@{books/slug(id=${book.getId()})}" th:text="${book.title}" id="title">Техника</a>
                                         </strong>
                                         <!--th:text="${book.author}"-->
-                                        <div class="Card-description" th:each="author : ${book.getAuthors()}" th:text="${author.getName()}">Кондратенко Валерий
+                                        <div id="author_" class="Card-description" th:each="author : ${book.getAuthors()}" th:text="${author.getName()}">Кондратенко Валерий
                                             Петрович
                                         </div>
-                                        <div class="Card-cost"><span class="Card-priceOld" th:text="${book.priceOld}">₽300.00</span><span
-                                                class="Card-price" th:text="${book.price + ' $'}">₽190.00</span>
+                                        <div class="Card-cost"><span class="Card-priceOld" id="price_old" th:text="${book.priceOld}">₽300.00</span><span
+                                                class="Card-price" id="price" th:text="${book.price + ' $'}">₽190.00</span>
                                         </div>
                                     </div>
                                 </div>

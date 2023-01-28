@@ -2,7 +2,9 @@ package com.example.MyBookShopApp.service.books;
 import com.example.MyBookShopApp.data.Author;
 import com.example.MyBookShopApp.data.Book;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.ResultSetExtractor;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Service;
 import java.sql.*;
@@ -120,27 +122,66 @@ public class BookService {
     }
 
     private void addAuthorListFieldBook(List<Book> books) {
-        if (!books.isEmpty()) {
-            Integer maxBooksSize = books.size();
-//            Map<Integer, List<Integer>> maps = new TreeMap();
-            List<Author> allAuthors = getAllAuthors();
-            for (int j = 1; j < maxBooksSize; j++) {
-                Book book = books.get(j-1);
-                List<Integer> listAuthorId = jdbcTemplate.query(SELECT_AUTHORS_ID_AT_BOOK, new RowMapper<Integer>() {
+
+        List<Author> allAuthorsList = new ArrayList<>();
+        allAuthorsList = getAllAuthors();
+
+        if (!books.isEmpty()){
+            for (Book book : books) {
+
+
+                List<Integer> authorsIdForBook = new ArrayList<>();
+
+
+
+                List<Author> authors = new ArrayList<>();
+
+                authorsIdForBook = jdbcTemplate.query(SELECT_AUTHORS_ID_AT_BOOK, new RowMapper<Integer>() {
                     @Override
                     public Integer mapRow(ResultSet rs, int rowNum) throws SQLException {
-                        return rs.getInt(1);
+                        return rs.getInt("author_id");
                     }
-                }, j);
-                List<Author> authorsOneBooks = new ArrayList<>();
+                }, book.getId());
 
-                List<Author> authorById = getAuthorById(listAuthorId);
+                for (Integer authorIdForBook : authorsIdForBook) {
 
-                book.setAuthors(authorById);
+                    authors.add(allAuthorsList.get(authorIdForBook-1));
+                }
 
-
-
+                book.setAuthors(authors);
             }
+        }
+
+//        if (!books.isEmpty()) {
+//            Integer maxBooksSize = books.size();
+////            Map<Integer, List<Integer>> maps = new TreeMap();
+//            List<Author> allAuthors = getAllAuthors();
+//            for (int j = 0; j < maxBooksSize; j++) {
+//                Book book = books.get(j);
+//                List<Integer> listAuthorId = jdbcTemplate.query(SELECT_AUTHORS_ID_AT_BOOK, new RowMapper<Integer>() {
+//                    @Override
+//                    public Integer mapRow(ResultSet rs, int rowNum) throws SQLException {
+//                        return rs.getInt(1);
+//                    }
+//                }, book.getId());
+//
+//                List<Author> authorById = getAuthorById(listAuthorId);
+//
+//                book.setAuthors(authorById);
+//            }
+//        }
+    }
+
+    private void fillAuthorField(Author author, ResultSet rs) {
+        try {
+            author.setId(rs.getInt("id"));
+            author.setPhoto(rs.getString("photo"));
+            author.setSlug(rs.getString("slug"));
+            author.setName(rs.getString("name"));
+            author.setDescription(rs.getString("description"));
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
         }
     }
 
@@ -167,5 +208,65 @@ public class BookService {
         return authorsByIdListResult;
     }
 
-    
+
+    public Book findBookById(Long id) {
+
+        List<Author> authors = new ArrayList<>();
+        authors = getAuthorsListForBookId(Math.toIntExact(id));
+        Book queryBook = jdbcTemplate.queryForObject("select b.pub_date, b.is_bestseller, b.slug, b.title, b.image_, b.description, b.priceold, b.price, b.discount from book b where b.id = ?", new RowMapper<Book>() {
+            @Override
+            public Book mapRow(ResultSet rs, int rowNum) throws SQLException {
+                Book book = new Book();
+                book.setPubDate(rs.getString("pub_date"));
+                book.setIsBestseller(rs.getBoolean("is_bestseller"));
+                book.setSlug(rs.getString("slug"));
+                book.setTitle(rs.getString("title"));
+                book.setImage(rs.getString("image_"));
+                book.setDescription(rs.getString("description"));
+                book.setPriceOld(rs.getInt("priceold"));
+                book.setPrice(rs.getInt("price"));
+                return book;
+            }
+        }, id);
+
+        queryBook.setAuthors(authors);
+        queryBook.setId(Integer.valueOf(id.toString()));
+
+
+//        Book query = jdbcTemplate.query("select b.pub_date, b.is_bestseller, b.slug, b.title, b.image_, b.description, b.priceold, b.price, b.discount from book b where b.id = ?" , new ResultSetExtractor<Book>() {
+//            @Override
+//            public Book extractData(ResultSet rs) throws SQLException, DataAccessException {
+//                book.setPubDate(rs.getString("pub_date"));
+//                book.setIsBestseller(rs.getBoolean("is_bestseller"));
+//                book.setSlug(rs.getString("slug"));
+//                book.setTitle(rs.getString("title"));
+//                book.setImage(rs.getString("image_"));
+//                book.setDescription(rs.getString("description"));
+//                book.setPriceOld(rs.getInt("priceold"));
+//                book.setPrice(rs.getInt("price"));
+//                return book;
+//            }
+//        }, id);
+
+        int o = 0;
+        return queryBook;
+    }
+
+    private List<Author> getAuthorsListForBookId(Integer bookId) {
+        List<Author> authors = new ArrayList<>();
+        authors = jdbcTemplate.query("select a.id, a.photo, a.slug, a.name, a.description from author a left join book2author b2a on b2a.author_id = a.id left join book b on b2a.book_id = b.id where b.id = ?",
+                new RowMapper<Author>() {
+                    @Override
+                    public Author mapRow(ResultSet rs, int rowNum) throws SQLException {
+                        Author author = new Author();
+                        author.setId(rs.getInt("id"));
+                        author.setPhoto(rs.getString("photo"));
+                        author.setSlug(rs.getString("slug"));
+                        author.setName(rs.getString("name"));
+                        author.setDescription(rs.getString("description"));
+                        return author;
+                    }
+                }, bookId);
+        return authors;
+    }
 }

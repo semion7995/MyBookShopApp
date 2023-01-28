@@ -222,3 +222,15 @@ create table tags_ (
 -- select * from book b left join book2author b2a on b2a.book_id = b.id where LOWER(title) like lower('title_8%')
 
 -- select * from author a where LOWER(name) like lower('Tamar D%')
+
+
+
+
+-- select * from book b left join book2author b2a on b2a.book_id = b.id
+
+
+-- select * from book b left join book2author b2a on b2a.book_id = b.id left join author a on b2a.author_id = a.id where b.id = ?
+
+
+
+-- select a.id, a.photo, a.slug, a.name, a.description from author a left join book2author b2a on b2a.author_id = a.id left join book b on b2a.book_id = b.id where b.id = ?

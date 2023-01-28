@@ -32,6 +32,21 @@
   <link rel="stylesheet" href="/assets/css/extra.min.css?v=87821122"><!--[if lt IE 9]>
   <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
   <script defer src="/assets/js/scripts.min.js?v=87821122"></script>
+  <script lang="javascript" type="text/javascript">
+    function onLoad(){
+      var paramImage_ = window.location.href.split("?")[1].split("=")[1];
+      var paramTitle = window.location.href.split("?")[1].split("=")[2];
+      var paramAuthor = window.location.href.split("?")[1].split("=")[3];
+      var paramPriceOld = window.location.href.split("?")[1].split("=")[4];
+      var paramPrice = window.location.href.split("?")[1].split("=")[5];
+      document.getElementById("image_slug").innerHTML = paramImage_;
+      document.getElementById("title_slug").innerHTML = paramTitle;
+      document.getElementById("title2_slug").innerHTML = paramTitle;
+      document.getElementById("author_slug").innerHTML = paramAuthor;
+      document.getElementById("price_old_slug").innerHTML = paramPriceOld;
+      document.getElementById("price_slug").innerHTML = paramPrice;
+    }
+  </script>
 </head>
 <body class="Site">
   <!--if lt IE 8
@@ -44,28 +59,28 @@
       | для правильного отображения сайта.
   -->
   <header th:replace="~{fragments/header_fragment :: headFragment ('menu-item','menu-item','menu-item','menu-item','menu-item')}"  />
-  <div class="Middle">
+  <div class="Middle" >
     <div class="wrap">
-      <main class="Middle-main">
+      <main class="Middle-main" >
         <ul class="breadcrumbs">
           <li class="breadcrumbs-item"><a th:href="@{/}" th:text="#{topbar.main}">Главная</a>
           </li>
           <li class="breadcrumbs-item"><a th:href="@{/genres}" th:text="#{topbar.genres}">Книги</a>
           </li>
-          <li class="breadcrumbs-item breadcrumbs-item_current"><span>Мара и морок</span>
+          <li class="breadcrumbs-item breadcrumbs-item_current"><span id="title_slug">Мара и морок</span>
           </li>
         </ul>
         <div class="Product">
           <div class="ProductCard">
             <div class="ProductCard-look">
-              <div class="ProductCard-photo"><img src="/assets/img/content/main/card.jpg" alt="card.jpg"/>
+              <div class="ProductCard-photo"><img id="image_slug" src="/assets/img/content/main/card.jpg" alt="card.jpg"/>
               </div>
             </div>
             <div class="ProductCard-desc">
-              <div class="ProductCard-header">
-                <h1 class="ProductCard-title">Мара и морок
+              <div class="ProductCard-header" id="title2_slug">
+                <h1 class="ProductCard-title" >Мара и морок
                 </h1>
-                <div class="ProductCard-author"><span class="ProductCard-titleProp">Автор:</span>&#32;<a href="#">Лия Арден</a>
+                <div class="ProductCard-author" ><span class="ProductCard-titleProp">Автор:</span>&#32;<a href="#" id="author_slug">Лия Арден</a>
                 </div>
                 <div class="ProductCard-rating"><span class="ProductCard-titleProp">Рейтинг:</span>
                   <button class="trigger trigger_dropdown" type="button">
@@ -335,7 +350,7 @@
                 </div>
                 <div class="ProductCard-tagMainPages"><span class="ProductCard-titleProp">Тэги:</span><a href="/tagMainPages/">Современные</a>,&#32;<a href="/tagMainPages/">Психологическая проза</a>
                 </div>
-                <div class="ProductCard-cost"><span class="ProductCard-titleProp">Цена:</span><span class="ProductCard-priceOld">₽300</span><span class="ProductCard-price">₽180</span>
+                <div class="ProductCard-cost" ><span class="ProductCard-titleProp">Цена:</span><span class="ProductCard-priceOld" id="price_old_slug" >₽300</span><span class="ProductCard-price" id="price_slug">₽180</span>
                 </div>
                 <!--+div.-info
                 //+div.-cost
