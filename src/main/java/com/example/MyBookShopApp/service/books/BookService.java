@@ -2,19 +2,20 @@ package com.example.MyBookShopApp.service.books;
 import com.example.MyBookShopApp.data.Author;
 import com.example.MyBookShopApp.data.Book;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.core.ResultSetExtractor;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Service;
 import java.sql.*;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
-
 @Service
 public class BookService {
     private static final String SELECT_AUTHORS_ID_AT_BOOK = "select b2a.author_id from book b left join book2author b2a on b2a.book_id = b.id where b.id=?";
+    private static final String SELECT_BOOKS_RECOMMENDED_LIST = "SELECT * FROM BOOK B WHERE B.pub_date < ? AND b.is_bestseller = 0";
+    private static final String SELECT_BOOKS_NOVELTIES_LIST = "SELECT * FROM BOOK where book.pub_date > ?";
+    private static final String SELECT_BOOKS_POPULAR_LIST = "SELECT * FROM BOOK where book.is_bestseller > ?";
+
     private JdbcTemplate jdbcTemplate;
     @Autowired
     public BookService(JdbcTemplate jdbcTemplate) {
@@ -28,14 +29,16 @@ public class BookService {
     public List<Book> getBooksRecommendedList() {
         List<Book> books = new ArrayList<>();
 
-        books = jdbcTemplate.query("SELECT * FROM BOOK B WHERE B.pub_date < '2022-04-1' AND b.is_bestseller = 0", new RowMapper<Book>() {
+        String queryDataStr = DateTimeFormatter.ofPattern("yyyy-MM-dd").format(LocalDate.now().minusMonths(6));
+
+        books = jdbcTemplate.query(SELECT_BOOKS_RECOMMENDED_LIST, new RowMapper<Book>() {
             @Override
             public Book mapRow(ResultSet rs, int rowNum) throws SQLException {
                 Book book = new Book();
                 addBookFields(rs, book);
                 return book;
             }
-        });
+        }, queryDataStr);
         addAuthorListFieldBook(books);
 
 
@@ -47,20 +50,16 @@ public class BookService {
         List<Book> books = new ArrayList<>();
         LocalDate sortNewBookDate = LocalDate.of(2022, 4, 1);
         String sortData = sortNewBookDate.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
-        books = jdbcTemplate.query("SELECT * FROM BOOK where book.pub_date > ?", new RowMapper<Book>() {
+        books = jdbcTemplate.query(SELECT_BOOKS_NOVELTIES_LIST, new RowMapper<Book>() {
             @Override
             public Book mapRow(ResultSet rs, int rowNum) throws SQLException {
                 Book book = new Book();
                 addBookFields(rs, book);
                 return book;
             }
-
-
         }, sortData);
-
         addAuthorListFieldBook(books);
         int o = 0;
-
         return books;
     }
 
@@ -70,18 +69,15 @@ public class BookService {
     public List<Book> getBooksPopularList() {
         List<Book> books = new ArrayList<>();
 
-        books = jdbcTemplate.query("SELECT * FROM BOOK where book.is_bestseller > ?", new RowMapper<Book>() {
+        books = jdbcTemplate.query(SELECT_BOOKS_POPULAR_LIST, new RowMapper<Book>() {
             @Override
             public Book mapRow(ResultSet rs, int rowNum) throws SQLException {
                 Book book = new Book();
                 addBookFields(rs, book);
                 return book;
             }
-        }, 0);
-
+        },0);
         addAuthorListFieldBook(books);
-
-
        return books;
     }
 
@@ -105,7 +101,6 @@ public class BookService {
                 return author;
             }
         });
-        int i = 10;
         return authors;
     }
     private void addBookFields(ResultSet rs, Book book) throws SQLException {
@@ -122,54 +117,25 @@ public class BookService {
     }
 
     private void addAuthorListFieldBook(List<Book> books) {
-
         List<Author> allAuthorsList = new ArrayList<>();
         allAuthorsList = getAllAuthors();
-
         if (!books.isEmpty()){
             for (Book book : books) {
-
-
                 List<Integer> authorsIdForBook = new ArrayList<>();
-
-
-
                 List<Author> authors = new ArrayList<>();
-
                 authorsIdForBook = jdbcTemplate.query(SELECT_AUTHORS_ID_AT_BOOK, new RowMapper<Integer>() {
                     @Override
                     public Integer mapRow(ResultSet rs, int rowNum) throws SQLException {
                         return rs.getInt("author_id");
                     }
                 }, book.getId());
-
                 for (Integer authorIdForBook : authorsIdForBook) {
 
                     authors.add(allAuthorsList.get(authorIdForBook-1));
                 }
-
                 book.setAuthors(authors);
             }
         }
-
-//        if (!books.isEmpty()) {
-//            Integer maxBooksSize = books.size();
-////            Map<Integer, List<Integer>> maps = new TreeMap();
-//            List<Author> allAuthors = getAllAuthors();
-//            for (int j = 0; j < maxBooksSize; j++) {
-//                Book book = books.get(j);
-//                List<Integer> listAuthorId = jdbcTemplate.query(SELECT_AUTHORS_ID_AT_BOOK, new RowMapper<Integer>() {
-//                    @Override
-//                    public Integer mapRow(ResultSet rs, int rowNum) throws SQLException {
-//                        return rs.getInt(1);
-//                    }
-//                }, book.getId());
-//
-//                List<Author> authorById = getAuthorById(listAuthorId);
-//
-//                book.setAuthors(authorById);
-//            }
-//        }
     }
 
     private void fillAuthorField(Author author, ResultSet rs) {
@@ -231,23 +197,6 @@ public class BookService {
 
         queryBook.setAuthors(authors);
         queryBook.setId(Integer.valueOf(id.toString()));
-
-
-//        Book query = jdbcTemplate.query("select b.pub_date, b.is_bestseller, b.slug, b.title, b.image_, b.description, b.priceold, b.price, b.discount from book b where b.id = ?" , new ResultSetExtractor<Book>() {
-//            @Override
-//            public Book extractData(ResultSet rs) throws SQLException, DataAccessException {
-//                book.setPubDate(rs.getString("pub_date"));
-//                book.setIsBestseller(rs.getBoolean("is_bestseller"));
-//                book.setSlug(rs.getString("slug"));
-//                book.setTitle(rs.getString("title"));
-//                book.setImage(rs.getString("image_"));
-//                book.setDescription(rs.getString("description"));
-//                book.setPriceOld(rs.getInt("priceold"));
-//                book.setPrice(rs.getInt("price"));
-//                return book;
-//            }
-//        }, id);
-
         int o = 0;
         return queryBook;
     }
